@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSine : MonoBehaviour
@@ -14,11 +12,11 @@ public class PlayerSine : MonoBehaviour
 
     void Start()
     {
-        startPosition = transform.position;
+        startPosition = transform.localPosition;
     }
 
     void Update()
     {
-        transform.position = startPosition + Vector3.up * Mathf.Sin(Time.time * frequency) * amplitude;
+        transform.localPosition = startPosition + Vector3.up * Mathf.Sin(Time.time * frequency) * amplitude;
     }
 }
