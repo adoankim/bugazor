@@ -17,6 +17,12 @@ public class EnemySine : MonoBehaviour
 
     void Update()
     {
+        // Enemy died and body is static now
+        if (_rigidbody.bodyType.Equals(RigidbodyType2D.Static))
+        {
+            return;
+        }
+
         _rigidbody.velocity = _rigidbody.velocity.y  * Vector3.up + Vector3.right * Mathf.Sin(Time.time * frequency) * amplitude;
     }
 }
