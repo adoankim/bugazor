@@ -5,6 +5,9 @@ public class BulletBehaviour : MonoBehaviour
 {
     [SerializeField]
     private float speed = 10f;
+    
+    [SerializeField]
+    private float pushBackIntensity = 3f;
 
     private void Start()
     {
@@ -20,6 +23,16 @@ public class BulletBehaviour : MonoBehaviour
     void Update()
     {
         transform.position = (Vector3.right * transform.position.x) + Vector3.up * (transform.position.y + speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (Tags.IsEnemyTag(collision.tag))
+        {
+            collision.gameObject.GetComponent<PushBack>().DoPushBack(pushBackIntensity);
+            StartCoroutine(DestroyBulletAfter(0f));
+        }
     }
 
     public float Speed
