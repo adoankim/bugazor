@@ -6,6 +6,12 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField]
     private int enemyHealth = 2;
 
+    [SerializeField]
+    private int pointsPerDefeat = 1;
+
+    [SerializeField]
+    private PlayerPoints playerPoints;
+
     private Rigidbody2D _rigidbody;
     private BoxCollider2D boxCollider;
 
@@ -25,14 +31,12 @@ public class EnemyDamage : MonoBehaviour
         }
 
 
-        if (enemyHealth - damage >= 0)
+        if (enemyHealth - damage > 0)
         {
             enemyHealth -= damage;
-            Debug.Log("Damage received: " + enemyHealth );
         }
         else
         {
-            Debug.Log("Enemy died received: " + enemyHealth);
             canTakeDamage = false;
             StartCoroutine(Die());
         }
@@ -42,10 +46,12 @@ public class EnemyDamage : MonoBehaviour
     {
         boxCollider.enabled = false;
         _rigidbody.bodyType = RigidbodyType2D.Static;
-        
+
         // TODO: Play die animation/effect
 
         yield return new WaitForSeconds(1.2f);
+
+        playerPoints.Add(pointsPerDefeat);
 
         Destroy(gameObject);
     }

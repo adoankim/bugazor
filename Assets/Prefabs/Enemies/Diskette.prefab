@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 2
+  pointsPerKill: 1
+  playerPoints: {fileID: -270671940854955607, guid: 35be2c880ef18944fac7d508cf4009e4, type: 3}
 --- !u!1001 &7927180867082670195
 PrefabInstance:
   m_ObjectHideFlags: 0

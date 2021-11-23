@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayerLives : MonoBehaviour
+public class PlayerLivesUI : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI livesText;
