@@ -7,5 +7,9 @@ public class BossScriptable : ScriptableObject
 
     public GameObject prefab;
 
+    [Range(1, 4)]
+    public float attackWaitMaxSeconds;
+
     public BossAttackScriptable[] attackClasses;
+    
 }

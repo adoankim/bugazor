@@ -20,6 +20,11 @@ public class EnemyDamage : MonoBehaviour
 
     private bool canTakeDamage = true;
 
+    public bool IsAlive
+    {
+        get { return canTakeDamage;  }
+    }
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5630284444864720762}
   - component: {fileID: 5630284444864720743}
   - component: {fileID: 5630284444864720761}
+  - component: {fileID: 5251109596137703093}
   m_Layer: 9
   m_Name: CRT
   m_TagString: Boss
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5630284444864720740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 5307616002818656881}
   m_Father: {fileID: 0}
@@ -124,8 +125,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 20
   pointsPerDefeat: 20
-  playerPoints: {fileID: -270671940854955607, guid: 35be2c880ef18944fac7d508cf4009e4, type: 3}
-  defeatTimeout: 4
+  playerPoints: {fileID: 0}
+  defeatTimeout: 1.5
+--- !u!114 &5251109596137703093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630284444864720740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb624c9a7241bdc46a9a2807cb369396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnitude: 20
+  bossAttributes: {fileID: 11400000, guid: 63667281a8b2c304facb2ef031d8e450, type: 2}
 --- !u!1001 &5630284445032525210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6722085885383957590, guid: 27264a131d8fa0e43bdebc25ddb648a3, type: 3}
       propertyPath: m_Intensity
-      value: 7.8
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: -6722085885383957590, guid: 27264a131d8fa0e43bdebc25ddb648a3, type: 3}
       propertyPath: m_Lightmapping
@@ -235,27 +250,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27264a131d8fa0e43bdebc25ddb648a3, type: 3}
---- !u!1 &4819872011136209099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 27264a131d8fa0e43bdebc25ddb648a3, type: 3}
-  m_PrefabInstance: {fileID: 5630284445032525210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5307616002818656881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 27264a131d8fa0e43bdebc25ddb648a3, type: 3}
   m_PrefabInstance: {fileID: 5630284445032525210}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5630284445025724031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4819872011136209099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb624c9a7241bdc46a9a2807cb369396, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magnitude: 20
-  bossAttributes: {fileID: 11400000, guid: 63667281a8b2c304facb2ef031d8e450, type: 2}

@@ -7,4 +7,5 @@ public class BossAttackScriptable : ScriptableObject
 
     public int multiplier;
     public int damage;
+    public GameObject prefab;
 }

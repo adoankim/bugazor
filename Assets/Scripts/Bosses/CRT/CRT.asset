@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CRT
   m_EditorClassIdentifier: 
   bossName: CRT
-  prefab: {fileID: 0}
-  attackClasses: []
+  prefab: {fileID: 5630284444864720740, guid: 7d53dd075cfe30c48883a423123710cf, type: 3}
+  attackWaitMaxSeconds: 1
+  attackClasses:
+  - {fileID: 11400000, guid: 86df4e51cf5b23e46ac5f0fcedd43ae1, type: 2}

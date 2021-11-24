@@ -11,14 +11,17 @@ public class CRTBehaviour : MonoBehaviour
 
     private int direction = -1;
 
+    private EnemyDamage enemyDamage;
+
     private void Awake()
     {
+        enemyDamage = GetComponentInParent<EnemyDamage>();
         StartCoroutine(UpdateDirection());
+        StartCoroutine("Attack");
     }
 
     void Update()
     {
-        
         transform.RotateAround(Vector3.zero, Vector3.up, Time.deltaTime * magnitude * direction);
     }
 
@@ -29,5 +32,18 @@ public class CRTBehaviour : MonoBehaviour
         direction *= -1;
 
         StartCoroutine(UpdateDirection());
+    }
+
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(Random.Range(1f, bossAttributes.attackWaitMaxSeconds));
+
+
+        Instantiate(bossAttributes.attackClasses[0].prefab, transform.position + Vector3.up * -5.5f, Quaternion.identity);
+
+        if (enemyDamage.IsAlive)
+        {
+            StartCoroutine(Attack());
+        }
     }
 }
