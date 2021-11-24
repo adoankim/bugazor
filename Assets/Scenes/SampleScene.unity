@@ -1070,10 +1070,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5630284444864720761, guid: 7d53dd075cfe30c48883a423123710cf, type: 3}
-      propertyPath: enemyHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5630284444864720761, guid: 7d53dd075cfe30c48883a423123710cf, type: 3}
       propertyPath: playerPoints
       value: 
       objectReference: {fileID: 104045231}

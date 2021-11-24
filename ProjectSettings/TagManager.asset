@@ -8,7 +8,7 @@ TagManager:
   - Enemy
   - Diskette
   - Boss
-  - EnemyBullet
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
@@ -20,7 +20,7 @@ TagManager:
   - Bullet
   - Enemy
   - Boss
-  - 
+  - EnemyBullet
   - 
   - 
   - 
