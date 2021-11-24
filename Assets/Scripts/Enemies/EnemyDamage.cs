@@ -12,6 +12,9 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField]
     private PlayerPoints playerPoints;
 
+    [SerializeField]
+    private float defeatTimeout = 1.2f;
+
     private Rigidbody2D _rigidbody;
     private BoxCollider2D boxCollider;
 
@@ -49,7 +52,7 @@ public class EnemyDamage : MonoBehaviour
 
         // TODO: Play die animation/effect
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(defeatTimeout);
 
         playerPoints.Add(pointsPerDefeat);
 

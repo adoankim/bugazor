@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +8,6 @@ public class PointsEarned : UnityEvent<int>
 
 public class PlayerPoints : MonoBehaviour
 {
-    [SerializeField]
     private int playerPoints = 0;
 
     private PointsEarned onPointsEarned = new PointsEarned();
@@ -18,10 +16,14 @@ public class PlayerPoints : MonoBehaviour
     {
         get { return playerPoints; }
     }
-
     private void OnDestroy()
     {
         onPointsEarned.RemoveAllListeners();
+    }
+
+    public void ResetPoints()
+    {
+        playerPoints = 0;
     }
 
     public void Add(int points)

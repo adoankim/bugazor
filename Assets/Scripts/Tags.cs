@@ -4,8 +4,9 @@ public static class Tags
 
     public static string Player { get { return "Player"; } }
     public static string Diskette { get { return "Diskette"; } }
+    public static string Boss { get { return "Boss"; } }
 
-    public static string[] Enemies = new string[] { Diskette };
+    public static string[] Enemies = new string[] { Diskette, Boss };
 
     public static bool IsEnemyTag(string tag)
     {
