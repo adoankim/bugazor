@@ -11,7 +11,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale > 0)
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
             bullet.GetComponent<BulletBehaviour>().Speed *= transform.localScale.y;
