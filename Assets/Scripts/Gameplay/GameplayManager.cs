@@ -17,8 +17,11 @@ public class GameplayManager : MonoBehaviour
     [SerializeField]
     private GameObject GameOverCanvas;
 
-    void Start()
+    public static PlayerPoints playerPointsRef;
+
+    void Awake()
     {
+        playerPointsRef = playerPoints;
         playerPoints.ResetPoints();
         playerDamage.AddOnDamageDealtListener(OnPlayerHealthUpdated);
     }

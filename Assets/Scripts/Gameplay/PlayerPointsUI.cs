@@ -9,13 +9,10 @@ public class PlayerPointsUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI pointsGameOverText;
 
-    [SerializeField]
-    private PlayerPoints playerPoints;
-
-    private void Awake()
+    private void Start()
     {
-        playerPoints.AddOnPointsEarnedListener(UpdatePointsText);
-        UpdatePointsText(playerPoints.Count);
+        GameplayManager.playerPointsRef.AddOnPointsEarnedListener(UpdatePointsText);
+        UpdatePointsText(GameplayManager.playerPointsRef.Count);
     }
 
     public void UpdatePointsText(int points)

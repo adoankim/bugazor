@@ -10,9 +10,6 @@ public class EnemyDamage : MonoBehaviour
     private int pointsPerDefeat = 1;
 
     [SerializeField]
-    private PlayerPoints playerPoints;
-
-    [SerializeField]
     private float defeatTimeout = 1.2f;
 
     private Rigidbody2D _rigidbody;
@@ -59,7 +56,7 @@ public class EnemyDamage : MonoBehaviour
 
         yield return new WaitForSeconds(defeatTimeout);
 
-        playerPoints.Add(pointsPerDefeat);
+        GameplayManager.playerPointsRef.Add(pointsPerDefeat);
 
         Destroy(gameObject);
     }
