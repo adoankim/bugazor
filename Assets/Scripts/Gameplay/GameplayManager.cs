@@ -6,14 +6,21 @@ public class GameplayManager : MonoBehaviour
     private PlayerPoints playerPoints;
 
     [SerializeField]
+    private PlayerDamage playerDamage;
+
+    [SerializeField]
     private GameObject GameCanvas;
 
     [SerializeField]
     private GameObject PauseCanvas;
 
+    [SerializeField]
+    private GameObject GameOverCanvas;
+
     void Start()
     {
         playerPoints.ResetPoints();
+        playerDamage.AddOnDamageDealtListener(OnPlayerHealthUpdated);
     }
 
     public void PauseGame()
@@ -34,5 +41,23 @@ public class GameplayManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        GameCanvas.SetActive(false);
+        PauseCanvas.SetActive(false);
+        GameOverCanvas.SetActive(true);
+    }
+
+    void OnPlayerHealthUpdated(int playerLives)
+    {
+        if(playerLives > 0)
+        {
+            return;
+        }
+
+        GameOver();
     }
 }

@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PressStart2P-Regular SDF Material
   m_Shader: {fileID: 4800000, guid: dd89cf5b9246416f84610a006f916af7, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: GLOW_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,8 +37,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 0.62, y: 1}
+        m_Offset: {x: 1.44, y: 0}
     m_Floats:
     - _Ambient: 0.5
     - _Bevel: 0.736
@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: PressStart2P-Regular SDF
+  m_Name: PressStart2P-Regular SDF Glow
   m_EditorClassIdentifier: 
-  hashCode: -801186333
+  hashCode: 1052124304
   material: {fileID: -4615986934725475511}
-  materialHashCode: -1858621597
+  materialHashCode: -1770624464
   m_Version: 1.1.0
   m_SourceFontFileGUID: e3318206ce4e152409359987a9421529
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: e3318206ce4e152409359987a9421529, type: 3}
