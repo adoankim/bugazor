@@ -596,7 +596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsText: {fileID: 1250953786}
   pointsGameOverText: {fileID: 1884643279}
-  playerPoints: {fileID: 104045231}
 --- !u!1 &252846538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1156495514
 Transform:
   m_ObjectHideFlags: 0

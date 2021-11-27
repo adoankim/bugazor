@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  pushBackIntensity: 1.25
+  pushBackIntensity: 5
 --- !u!61 &-5620368928478603669
 BoxCollider2D:
   m_ObjectHideFlags: 0

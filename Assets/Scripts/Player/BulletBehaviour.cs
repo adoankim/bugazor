@@ -7,7 +7,7 @@ public class BulletBehaviour : MonoBehaviour
     private float speed = 10f;
     
     [SerializeField]
-    private float pushBackIntensity = 3f;
+    private float pushBackMultiplier = 1f;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class BulletBehaviour : MonoBehaviour
 
         if (Tags.IsEnemyTag(collision.tag))
         {
-            collision.gameObject.GetComponent<PushBack>().DoPushBack(pushBackIntensity);
+            collision.gameObject.GetComponent<PushBack>().DoPushBack(pushBackMultiplier);
             collision.gameObject.GetComponent<EnemyDamage>().ReceiveDamage(1);
             StartCoroutine(DestroyBulletAfter(0f));
         }
