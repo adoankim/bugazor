@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(Random.Range(1.0f, 2.5f));
+        yield return new WaitForSeconds(Random.Range(.5f, 2.5f));
         int enemyType = Random.Range(0, enemyPrefabs.Count);
         int enemySpawnPosition = Random.Range(0, 3);
         switch (enemySpawnPosition)

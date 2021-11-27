@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8997353244746898351}
   - component: {fileID: 2353826312822089342}
   - component: {fileID: -2578013590200518617}
+  - component: {fileID: -9067943101020679816}
   m_Layer: 8
   m_Name: Mouse
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5997078164053345604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6623841165974086234}
@@ -49,10 +50,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.2
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 10
-  m_GravityScale: 0.5
+  m_AngularDrag: 100
+  m_GravityScale: 0.15
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -140,6 +141,22 @@ MonoBehaviour:
   amplitude: 1.8
   frequency: 1.8
   movementType: 0
+--- !u!114 &-9067943101020679816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5997078164053345604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b39a88096f746f4792afb07b36c08d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1245806175244721501, guid: 76a6e4deb4e0bc7418e6a82c901cc09f, type: 3}
+  attackWaitMinSeconds: 1
+  attackWaitMaxSeconds: 1
+  distanceFromBody: -3.5
 --- !u!1001 &6658049847024928177
 PrefabInstance:
   m_ObjectHideFlags: 0
