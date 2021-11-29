@@ -30,7 +30,11 @@ public class BulletBehaviour : MonoBehaviour
 
         if (Tags.IsEnemyTag(collision.tag))
         {
-            collision.gameObject.GetComponent<PushBack>().DoPushBack(pushBackMultiplier);
+            PushBack pushBack = collision.gameObject.GetComponent<PushBack>();
+            if (pushBack != null)
+            {
+                pushBack.DoPushBack(pushBackMultiplier);
+            }
             collision.gameObject.GetComponent<EnemyDamage>().ReceiveDamage(1);
             StartCoroutine(DestroyBulletAfter(0f));
         }
