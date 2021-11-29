@@ -88,6 +88,7 @@ public class LevelsManager : MonoBehaviour
             currentLevel = nextLevel;
             totalPlayTime = totalPlayTime + playTime;
             playTime = 0;
+            currentLevelStage = 0;
             currentLevelSettings = levelsSettings[currentLevel];
             currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
             StartCoroutine(coroutineName);
