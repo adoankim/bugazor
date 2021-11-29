@@ -90,6 +90,7 @@ public class LevelsManager : MonoBehaviour
             playTime = 0;
             currentLevelStage = 0;
             currentLevelSettings = levelsSettings[currentLevel];
+            isBossFight = false;
             currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
             StartCoroutine(coroutineName);
         }
