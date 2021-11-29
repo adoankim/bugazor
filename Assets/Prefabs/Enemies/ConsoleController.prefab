@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 52329769}
   - component: {fileID: 52329772}
   - component: {fileID: 6371630100934107072}
-  - component: {fileID: 52329770}
   - component: {fileID: 52329773}
   m_Layer: 8
   m_Name: ConsoleController
@@ -86,21 +85,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePoints: 1
---- !u!114 &52329770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2729831745350668127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealth: 4
-  pointsPerDefeat: 1
-  defeatTimeout: 1.2
 --- !u!61 &52329773
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4070451377426888488}
   - component: {fileID: 7605248088620595533}
+  - component: {fileID: 1854320538}
   m_Layer: 8
   m_Name: Collision
   m_TagString: Enemy
@@ -185,6 +170,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6335406, y: 1.9252977}
   m_EdgeRadius: 0
+--- !u!114 &1854320538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8042727266010356798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 2
+  pointsPerDefeat: 1
+  defeatTimeout: 1.2
+  _rigidbody: {fileID: 52329772}
 --- !u!1 &8704475178209749995
 GameObject:
   m_ObjectHideFlags: 0
