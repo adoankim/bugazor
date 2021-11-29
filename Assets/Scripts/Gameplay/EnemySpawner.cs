@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
         {
             offsetPosition = Vector3.zero;
         }
-
         if (forceCenterSpawn)
         {
             enemySpawnOrigin = centerSpawner;
@@ -33,7 +32,14 @@ public class EnemySpawner : MonoBehaviour
                     enemySpawnOrigin = leftSpawner;
                     break;
                 case 1:
-                    enemySpawnOrigin = centerSpawner;
+
+                    if (enemyPrefab.GetComponent<CrossScreenMovement>() == null)
+                    {
+                        enemySpawnOrigin = centerSpawner;
+                    } else
+                    {
+                        enemySpawnOrigin = rightSpawner;
+                    }
                     break;
                 case 2:
                     enemySpawnOrigin = rightSpawner;

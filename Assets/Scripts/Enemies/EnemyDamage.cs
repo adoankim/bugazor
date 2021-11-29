@@ -16,7 +16,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField]
     private Rigidbody2D _rigidbody;
     
-    private BoxCollider2D boxCollider;
+    private Collider2D _collider;
 
     private bool canTakeDamage = true;
 
@@ -33,7 +33,7 @@ public class EnemyDamage : MonoBehaviour
         {
             _rigidbody = GetComponent<Rigidbody2D>();
         }
-        boxCollider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     public void ReceiveDamage(int damage)
@@ -67,7 +67,7 @@ public class EnemyDamage : MonoBehaviour
 
     IEnumerator Die()
     {
-        boxCollider.enabled = false;
+        _collider.enabled = false;
         yield return new WaitForSeconds(0.3f);
         _rigidbody.bodyType = RigidbodyType2D.Static;
 
