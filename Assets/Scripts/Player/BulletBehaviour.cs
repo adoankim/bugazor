@@ -35,7 +35,13 @@ public class BulletBehaviour : MonoBehaviour
             {
                 pushBack.DoPushBack(pushBackMultiplier);
             }
-            collision.gameObject.GetComponent<EnemyDamage>().ReceiveDamage(1);
+
+            EnemyDamage enemyDamage = collision.gameObject.GetComponent<EnemyDamage>();
+            if (enemyDamage != null)
+            {
+                collision.gameObject.GetComponent<EnemyDamage>().ReceiveDamage(1);
+            }
+
             StartCoroutine(DestroyBulletAfter(0f));
         }
     }
