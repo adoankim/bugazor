@@ -130,25 +130,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2548522563346782914, guid: 310c4f1c176a4c242b30f7e146a47321, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2548522563346782914, guid: 310c4f1c176a4c242b30f7e146a47321, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4471260660923603881, guid: 310c4f1c176a4c242b30f7e146a47321, type: 3}
       propertyPath: m_Name
       value: VideoConsole
-      objectReference: {fileID: 0}
-    - target: {fileID: 8656628446057742038, guid: 310c4f1c176a4c242b30f7e146a47321, type: 3}
-      propertyPath: m_Range
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8656628446057742038, guid: 310c4f1c176a4c242b30f7e146a47321, type: 3}
-      propertyPath: m_Intensity
-      value: 10.4
       objectReference: {fileID: 0}
     - target: {fileID: 8819561675693518290, guid: 310c4f1c176a4c242b30f7e146a47321, type: 3}
       propertyPath: m_RootOrder
