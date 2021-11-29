@@ -32,10 +32,23 @@ public class VideoConsoleBehaviour : BossBehaviour
     {
         yield return new WaitForSeconds(Random.Range(1f, bossAttributes.attackWaitMaxSeconds));
 
+        int attackType = Random.Range(0, bossAttributes.attackClasses.Length);
+        BossAttackScriptable attack = bossAttributes.attackClasses[attackType];
 
-        Instantiate(bossAttributes.attackClasses[0].prefab, transform.position + Vector3.up * -2.5f, Quaternion.identity);
+        if (attack.name.Contains("Controller"))
+        {
+            animator.enabled = false;
+        }
 
-        
+        Instantiate(attack.prefab, transform.position + Vector3.up * -2.5f, Quaternion.identity);
+
+        if (attack.name.Contains("Controller"))
+        {
+            yield return new WaitForSeconds(0.5f);
+            animator.enabled = true;
+        }
+
+
 
         if (IsAlive)
         {

@@ -17,3 +17,4 @@ MonoBehaviour:
   attackWaitMaxSeconds: 1
   attackClasses:
   - {fileID: 11400000, guid: f66cb89c4e5b7644eb3de38019138ebb, type: 2}
+  - {fileID: 11400000, guid: 62fb3d3410c322845bab79c4ac44b900, type: 2}
