@@ -13,8 +13,13 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform enemySpawnOrigin;
 
-    public void SpawnEnemy(GameObject enemyPrefab, bool forceCenterSpawn = false)
+    public void SpawnEnemy(GameObject enemyPrefab, Vector3? offsetPosition = null, bool forceCenterSpawn = false)
     {
+        if (offsetPosition == null)
+        {
+            offsetPosition = Vector3.zero;
+        }
+
         if (forceCenterSpawn)
         {
             enemySpawnOrigin = centerSpawner;
@@ -35,6 +40,6 @@ public class EnemySpawner : MonoBehaviour
                     break;
             }
         }
-        Instantiate(enemyPrefab, enemySpawnOrigin.localPosition, Quaternion.identity, enemySpawnOrigin);
+        Instantiate(enemyPrefab, enemySpawnOrigin.localPosition + offsetPosition.Value, Quaternion.identity, enemySpawnOrigin);
     }
 }
