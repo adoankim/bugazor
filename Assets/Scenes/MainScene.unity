@@ -659,8 +659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 297424874}
   levelsSettings:
-  - {fileID: 11400000, guid: fe5ee04b69e9a2948ad52af27db15b6f, type: 2}
   - {fileID: 11400000, guid: 498bf04c1afecb3468a020dd3c73e95e, type: 2}
+  - {fileID: 11400000, guid: fe5ee04b69e9a2948ad52af27db15b6f, type: 2}
 --- !u!1 &297424872
 GameObject:
   m_ObjectHideFlags: 0
