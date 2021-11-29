@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ba1ef396184e428745f3ca1baa983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -80
+  speed: {x: -50, y: -50, z: -50}
   target: {fileID: 8704475178209749995}
+  axis: {x: 1, y: 1, z: 1}
   randomStart: 1
   startRange: 4
 --- !u!50 &52329772
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.052102685, y: -0.20841074}
@@ -230,8 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ba1ef396184e428745f3ca1baa983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: {x: 100, y: 100, z: 100}
   target: {fileID: 8042727266010356798}
+  axis: {x: 1, y: 1, z: 1}
   randomStart: 1
   startRange: 4
 --- !u!1001 &2564625220410817005
