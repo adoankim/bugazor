@@ -23,7 +23,7 @@ public class GameplayManager : MonoBehaviour
     {
         playerPointsRef = playerPoints;
         playerPoints.ResetPoints();
-        playerDamage.AddOnDamageDealtListener(OnPlayerHealthUpdated);
+        playerDamage.AddOnHealthChangedListener(OnPlayerHealthUpdated);
     }
 
     public void PauseGame()

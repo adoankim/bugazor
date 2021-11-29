@@ -11,7 +11,7 @@ public class PlayerLivesUI : MonoBehaviour
 
     private void Awake()
     {
-        playerDamage.AddOnDamageDealtListener(UpdateLivesText);
+        playerDamage.AddOnHealthChangedListener(UpdateLivesText);
         UpdateLivesText(playerDamage.PlayerHealth);
     }
 

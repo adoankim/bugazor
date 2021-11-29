@@ -3,21 +3,24 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class DamageReceived : UnityEvent<int>
+public class HealthChanged : UnityEvent<int>
 {
 }
 
 public class PlayerDamage : MonoBehaviour
 {
     [SerializeField]
-    private int playerHealth = 10;
+    private int playerHealth = 15;
+
+    [SerializeField]
+    private int playerMaxHealth = 15;
 
     [SerializeField]
     private float timeBetweenDamage = 2f;
 
     private bool canTakeDamage = true;
 
-    private DamageReceived onDamageReceived = new DamageReceived();
+    private HealthChanged onHealthChanged = new HealthChanged();
 
     public int PlayerHealth
     {
@@ -28,7 +31,14 @@ public class PlayerDamage : MonoBehaviour
 
     private void OnDestroy()
     {
-        onDamageReceived.RemoveAllListeners();
+        onHealthChanged.RemoveAllListeners();
+    }
+
+    public void AddLives(int lives)
+    {
+        int newHealth = playerHealth + lives;
+        playerHealth = Mathf.Clamp(newHealth, newHealth, playerMaxHealth);
+        onHealthChanged.Invoke(playerHealth);
     }
 
     public void ReceiveDamage(int damage)
@@ -42,7 +52,7 @@ public class PlayerDamage : MonoBehaviour
         canTakeDamage = false;
 
         StartCoroutine(DamageTimeout(timeBetweenDamage));
-        onDamageReceived.Invoke(playerHealth);
+        onHealthChanged.Invoke(playerHealth);
 
         if (playerHealth - damage >= 0)
         {
@@ -53,7 +63,7 @@ public class PlayerDamage : MonoBehaviour
             // Game over condition
         }
 
-        onDamageReceived.Invoke(playerHealth);
+        onHealthChanged.Invoke(playerHealth);
     }
 
     IEnumerator DamageTimeout(float timeout)
@@ -63,13 +73,13 @@ public class PlayerDamage : MonoBehaviour
         canTakeDamage = true;
     }
 
-    public void AddOnDamageDealtListener(UnityEngine.Events.UnityAction<int> listener)
+    public void AddOnHealthChangedListener(UnityEngine.Events.UnityAction<int> listener)
     {
-        onDamageReceived.AddListener(listener);
+        onHealthChanged.AddListener(listener);
     }
 
-    public void RemoveOnDamageDealtListener(UnityEngine.Events.UnityAction<int> listener)
+    public void RemoveOnHealthChangedListener(UnityEngine.Events.UnityAction<int> listener)
     {
-        onDamageReceived.RemoveListener(listener);
+        onHealthChanged.RemoveListener(listener);
     }
 }

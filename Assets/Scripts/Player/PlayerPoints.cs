@@ -8,13 +8,26 @@ public class PointsEarned : UnityEvent<int>
 
 public class PlayerPoints : MonoBehaviour
 {
+    [SerializeField]
+    private int healthRecoveryPointFrequency = 10;
+
+    [SerializeField]
+    private int healthRecoveryQuantity= 2;
+
     private int playerPoints = 0;
 
     private PointsEarned onPointsEarned = new PointsEarned();
 
+    private PlayerDamage playerDamage;
+
     public int Count
     {
         get { return playerPoints; }
+    }
+
+    private void Awake()
+    {
+        playerDamage = GetComponent<PlayerDamage>();
     }
     private void OnDestroy()
     {
@@ -30,6 +43,11 @@ public class PlayerPoints : MonoBehaviour
     {
         playerPoints += points;
         onPointsEarned.Invoke(playerPoints);
+
+        if(playerPoints % healthRecoveryPointFrequency == 0)
+        {
+            playerDamage.AddLives(healthRecoveryQuantity);
+        }
     }
 
     public void AddOnPointsEarnedListener(UnityEngine.Events.UnityAction<int> listener)

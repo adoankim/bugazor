@@ -240,7 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ab679a4d1c6394689d0d5e9e7e65f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 10
+  playerHealth: 15
+  playerMaxHealth: 15
   timeBetweenDamage: 1
 --- !u!114 &-270671940854955607
 MonoBehaviour:
@@ -254,3 +255,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4382977308579498745ccc3addd692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthRecoveryPointFrequency: 5
+  healthRecoveryQuantity: 1
