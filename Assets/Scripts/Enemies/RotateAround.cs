@@ -9,7 +9,7 @@ public class RotateAround : MonoBehaviour
     private GameObject target;
 
     [SerializeField]
-    private Vector3? axis;
+    private Vector3 axis;
 
     [SerializeField]
     private bool randomStart = false;
@@ -19,7 +19,7 @@ public class RotateAround : MonoBehaviour
 
     private void Start()
     {
-        if(axis == null)
+        if(axis == Vector3.zero)
         {
             axis = Vector3.forward;
         }
@@ -43,6 +43,6 @@ public class RotateAround : MonoBehaviour
             return;
         }
 
-        target.transform.RotateAround(this.transform.position, axis.Value, Time.deltaTime * speed);
+        target.transform.RotateAround(this.transform.position, axis, Time.deltaTime * speed);
     }
 }
