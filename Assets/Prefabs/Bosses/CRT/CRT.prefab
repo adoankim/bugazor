@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725814154281154459305123c8b8de7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushBackIntensity: 1
 --- !u!114 &5630284444864720743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 20
   pointsPerDefeat: 20
-  playerPoints: {fileID: 0}
   defeatTimeout: 1.5
 --- !u!114 &5251109596137703093
 MonoBehaviour:

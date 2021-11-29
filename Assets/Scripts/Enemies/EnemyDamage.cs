@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class EnemyDamage : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     private bool canTakeDamage = true;
+
+    private UnityEvent onEnemyDie= new UnityEvent();
 
     public bool IsAlive
     {
@@ -47,6 +50,16 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        onEnemyDie.RemoveAllListeners();
+    }
+
+    public void AddOnEnemyDieListener(UnityEngine.Events.UnityAction listener)
+    {
+        onEnemyDie.AddListener(listener);
+    }
+
     IEnumerator Die()
     {
         boxCollider.enabled = false;
@@ -58,6 +71,7 @@ public class EnemyDamage : MonoBehaviour
         yield return new WaitForSeconds(defeatTimeout);
 
         GameplayManager.playerPointsRef.Add(pointsPerDefeat);
+        onEnemyDie.Invoke();
 
         Destroy(gameObject);
     }

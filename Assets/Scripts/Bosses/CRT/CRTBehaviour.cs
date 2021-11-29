@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CRTBehaviour : MonoBehaviour
+public class CRTBehaviour : BossBehaviour
 {
     [SerializeField]
     private float magnitude = 10f;
@@ -11,11 +11,9 @@ public class CRTBehaviour : MonoBehaviour
 
     private int direction = -1;
 
-    private EnemyDamage enemyDamage;
-
-    private void Awake()
+    protected override void Awake()
     {
-        enemyDamage = GetComponentInParent<EnemyDamage>();
+        base.Awake();
         StartCoroutine(UpdateDirection());
         StartCoroutine("Attack");
     }
@@ -41,7 +39,7 @@ public class CRTBehaviour : MonoBehaviour
 
         Instantiate(bossAttributes.attackClasses[0].prefab, transform.position + Vector3.up * -5.5f, Quaternion.identity);
 
-        if (enemyDamage.IsAlive)
+        if (IsAlive)
         {
             StartCoroutine(Attack());
         }
