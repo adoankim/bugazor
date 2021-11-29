@@ -69,6 +69,9 @@ public class LevelsManager : MonoBehaviour
         }
 
 
+        totalPlayTime = totalPlayTime + playTime;
+        playTime = 0;
+
         int bossStage = currentLevelSettings.timeLapseMilestones.Count;
         currentLevelStage = Mathf.Clamp(currentLevelStage + 1, 0, bossStage);
         // If new level stage is boss stage, start boss fight
