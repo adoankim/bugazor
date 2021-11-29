@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2729831745350668127, guid: ecda239de52561a4ead839c3fd0158c1, type: 3}
+  - {fileID: 7927180866631212637, guid: 0e872fa01fd137d45b83358cf8a393ad, type: 3}
   - {fileID: 5997078164053345604, guid: 4c88f453b58986e419a75010a8ca4268, type: 3}
+  timeLapseMilestones: 0a0000001e000000
   bossPrefab: {fileID: 5630284444864720740, guid: 7d53dd075cfe30c48883a423123710cf, type: 3}

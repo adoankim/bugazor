@@ -5,5 +5,6 @@ using UnityEngine;
 public class LevelEnemySettingsScriptable : ScriptableObject
 {
     public List<GameObject> enemyPrefabs;
+    public List<int> timeLapseMilestones;
     public GameObject bossPrefab;
 }

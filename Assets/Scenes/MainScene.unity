@@ -657,6 +657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda8fe54b244df540b33afdc69753328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 297424874}
+  levelsSettings:
+  - {fileID: 11400000, guid: 498bf04c1afecb3468a020dd3c73e95e, type: 2}
 --- !u!1 &297424872
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,9 +709,6 @@ MonoBehaviour:
   leftSpawner: {fileID: 1928745256}
   centerSpawner: {fileID: 439610737}
   rightSpawner: {fileID: 1773569043}
-  enemyPrefabs:
-  - {fileID: 7927180866631212637, guid: 0e872fa01fd137d45b83358cf8a393ad, type: 3}
-  - {fileID: 5997078164053345604, guid: 4c88f453b58986e419a75010a8ca4268, type: 3}
 --- !u!114 &313728158 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -7722659658083692804, guid: 35be2c880ef18944fac7d508cf4009e4, type: 3}

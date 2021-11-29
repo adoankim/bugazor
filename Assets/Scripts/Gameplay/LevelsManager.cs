@@ -13,8 +13,10 @@ public class LevelsManager : MonoBehaviour
     private List<LevelEnemySettingsScriptable> levelsSettings;
 
     private int currentLevel = 0;
+    private int currentLevelStage = 0;
     private float playTime = 0.0f;
-    List<GameObject> enemyPrefabs;
+    List<GameObject> currentEnemyPrefabs;
+    private LevelEnemySettingsScriptable currentLevelSettings;
 
     private void OnEnable()
     {
@@ -26,12 +28,23 @@ public class LevelsManager : MonoBehaviour
         StopCoroutine(coroutineName);
     }
 
+    private void Start()
+    {
+        currentLevelSettings = levelsSettings[currentLevel];
+        currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
+    }
+
     private void Update()
     {
         playTime = playTime + Time.deltaTime;
         if (playTime % 1 < 0.02f)
         {
             // TODO: Update playtime UI
+
+            if (currentLevelSettings.timeLapseMilestones[currentLevelStage] - playTime < 0)
+            {
+                currentLevelStage = Mathf.Clamp(currentLevelStage + 1, 0, currentLevelSettings.timeLapseMilestones.Count - 1);
+            }
         }
     }
 
@@ -39,9 +52,12 @@ public class LevelsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(.5f, 2.5f));
 
-        enemyPrefabs = levelsSettings[currentLevel].enemyPrefabs;
-        int enemyType = Random.Range(0, enemyPrefabs.Count);
-        enemySpawner.SpawnEnemy(enemyPrefabs[enemyType]);
+        // Stage clamp increases after reaching every time lapse milestone
+        // This way we show different enemy types after some time passed.
+        int enemyTypeStageClamp = Mathf.Clamp(currentLevelStage + 1, 1, currentEnemyPrefabs.Count);
+        int enemyType = Random.Range(0, enemyTypeStageClamp);
+
+        enemySpawner.SpawnEnemy(currentEnemyPrefabs[enemyType]);
 
         StartCoroutine(coroutineName);
     }
