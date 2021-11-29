@@ -13,7 +13,9 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField]
     private float defeatTimeout = 1.2f;
 
+    [SerializeField]
     private Rigidbody2D _rigidbody;
+    
     private BoxCollider2D boxCollider;
 
     private bool canTakeDamage = true;
@@ -27,7 +29,10 @@ public class EnemyDamage : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
