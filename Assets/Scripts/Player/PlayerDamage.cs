@@ -60,6 +60,7 @@ public class PlayerDamage : MonoBehaviour
         } 
         else
         {
+            playerHealth = 0;
             // Game over condition
         }
 
