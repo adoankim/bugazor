@@ -15,5 +15,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7927180866631212637, guid: 0e872fa01fd137d45b83358cf8a393ad, type: 3}
   - {fileID: 5997078164053345604, guid: 4c88f453b58986e419a75010a8ca4268, type: 3}
-  timeLapseMilestones: 0a0000001e000000
+  timeLapseMilestones: 1e00000028000000
   bossPrefab: {fileID: 5630284444864720740, guid: 7d53dd075cfe30c48883a423123710cf, type: 3}
+  bossOffsetPosition: {x: 0, y: -2.5, z: 0}

@@ -9,11 +9,15 @@ public class BossBehaviour : MonoBehaviour
     {
         enemyDamage = GetComponentInParent<EnemyDamage>();
         enemyDamage.AddOnEnemyDieListener(OnBossDied);
+        enemyDamage.AddOnDamageTaken(OnDamageTaken);
     }
 
     private void OnBossDied()
     {
         LevelsManager._instance.GoNextLevel();
+    }
+    protected virtual void OnDamageTaken()
+    {
     }
 
     protected bool IsAlive {

@@ -4,32 +4,28 @@ using System.Collections;
 public class VideoConsoleBehaviour : BossBehaviour
 {
     [SerializeField]
-    private float magnitude = 10f;
-
-    [SerializeField]
     private BossScriptable bossAttributes;
 
-    private int direction = -1;
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
+    private Animator innerAnimator;
 
     protected override void Awake()
     {
         base.Awake();
-        StartCoroutine(UpdateDirection());
         StartCoroutine("Attack");
     }
 
-    void Update()
+    protected override void OnDamageTaken()
     {
-        transform.RotateAround(Vector3.zero, Vector3.up, Time.deltaTime * magnitude * direction);
-    }
+        base.OnDamageTaken();
 
-    IEnumerator UpdateDirection()
-    {
-        yield return new WaitForSeconds(2.5f);
-
-        direction *= -1;
-
-        StartCoroutine(UpdateDirection());
+        if (IsAlive)
+        {
+            innerAnimator.Play("VideoConsoleScaleFlash");
+        }
     }
 
     IEnumerator Attack()
@@ -39,9 +35,14 @@ public class VideoConsoleBehaviour : BossBehaviour
 
         Instantiate(bossAttributes.attackClasses[0].prefab, transform.position + Vector3.up * -2.5f, Quaternion.identity);
 
+        
+
         if (IsAlive)
         {
             StartCoroutine(Attack());
+        } else
+        {
+            animator.enabled = false;
         }
     }
 }

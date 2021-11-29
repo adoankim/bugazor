@@ -20,7 +20,9 @@ public class EnemyDamage : MonoBehaviour
 
     private bool canTakeDamage = true;
 
-    private UnityEvent onEnemyDie= new UnityEvent();
+    private UnityEvent onEnemyDie = new UnityEvent();
+
+    private UnityEvent onDamageTaken = new UnityEvent();
 
     public bool IsAlive
     {
@@ -43,7 +45,7 @@ public class EnemyDamage : MonoBehaviour
             return;
         }
 
-
+        onDamageTaken.Invoke();
         if (enemyHealth - damage > 0)
         {
             enemyHealth -= damage;
@@ -58,11 +60,17 @@ public class EnemyDamage : MonoBehaviour
     private void OnDestroy()
     {
         onEnemyDie.RemoveAllListeners();
+        onDamageTaken.RemoveAllListeners();
     }
 
     public void AddOnEnemyDieListener(UnityEngine.Events.UnityAction listener)
     {
         onEnemyDie.AddListener(listener);
+    }
+
+    public void AddOnDamageTaken(UnityEngine.Events.UnityAction listener)
+    {
+        onDamageTaken.AddListener(listener);
     }
 
     IEnumerator Die()
