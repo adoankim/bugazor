@@ -3,7 +3,7 @@ using UnityEngine;
 public class RotateAround : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 100f;
+    private Vector3 speed;
 
     [SerializeField]
     private GameObject target;
@@ -19,7 +19,7 @@ public class RotateAround : MonoBehaviour
 
     private void Start()
     {
-        if(axis == Vector3.zero)
+        if (axis == Vector3.zero)
         {
             axis = Vector3.forward;
         }
@@ -43,6 +43,8 @@ public class RotateAround : MonoBehaviour
             return;
         }
 
-        target.transform.RotateAround(this.transform.position, axis, Time.deltaTime * speed);
+        target.transform.RotateAround(this.transform.position, Vector3.right * axis.x, Time.deltaTime * speed.x);
+        target.transform.RotateAround(this.transform.position, Vector3.up * axis.y, Time.deltaTime * speed.y);
+        target.transform.RotateAround(this.transform.position, Vector3.forward * axis.z, Time.deltaTime * speed.z);
     }
 }
