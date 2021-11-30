@@ -25,6 +25,7 @@ public class TutorialManager : MonoBehaviour
 
     private bool leftPressed = false;
     private bool rightPressed = false;
+    private bool spacePressed = false;
 
     void Start()
     {
@@ -36,6 +37,8 @@ public class TutorialManager : MonoBehaviour
         yield return StartCoroutine(IntroStep());
 
         yield return StartCoroutine(MoveStep());
+
+        yield return StartCoroutine(ShootStep());
     }
 
     IEnumerator IntroStep()
@@ -65,7 +68,16 @@ public class TutorialManager : MonoBehaviour
             {
                 rightPressed = true;
             }
-        }   
+        }
+        else if(stage == 2)
+        {
+            bool pressed = Input.GetKeyDown(KeyCode.Space);
+
+            if(pressed && !spacePressed)
+            {
+                spacePressed = true;
+            }
+        }
     }
 
     IEnumerator MoveStep()
@@ -91,5 +103,42 @@ public class TutorialManager : MonoBehaviour
         playerController.StopMove();
         playerController.enabled = false;
         arrows.SetActive(false);
+
+        yield return new WaitForSeconds(3f);
     }
+
+    IEnumerator ShootStep()
+    {
+
+        tutorialText.text = "Now, let's try something else...";
+
+        yield return new WaitForSeconds(3f);
+
+        tutorialText.text = "But be careful!";
+
+        yield return new WaitForSeconds(2.5f);
+
+        tutorialText.text = "Try to release your inner energy";
+
+        yield return new WaitForSeconds(2f);
+
+        space.SetActive(true);
+        playerShoot.enabled = true;
+        stage = 2;
+
+        while (!spacePressed)
+        {
+            yield return new WaitForSeconds(2.0f);
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        tutorialText.text = "Good job, you did well!";
+
+        playerShoot.enabled = false;
+        space.SetActive(false);
+
+        yield return new WaitForSeconds(3f);
+    }
+
 }
