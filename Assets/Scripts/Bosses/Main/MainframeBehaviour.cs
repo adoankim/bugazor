@@ -63,13 +63,14 @@ public class MainframeBehaviour : BossBehaviour
         // 2 - second stage arms attack and horizontal movement
         if(shields.transform.childCount < 2)
         {
+            animator.enabled = true;
             StartCoroutine(AttackStage2());
         }
     }
 
     IEnumerator AttackStage2()
     {
-        yield return new WaitForSeconds(Random.Range(1f, bossAttributes.attackWaitMaxSeconds));
+        yield return new WaitForSeconds(Random.Range(1.5f, bossAttributes.attackWaitMaxSeconds));
 
         if (rightHandDestroyed && leftHandDestroyed)
         {
@@ -79,7 +80,7 @@ public class MainframeBehaviour : BossBehaviour
         bool isLeftAttack = Random.Range(0, 10) % 2 == 0;
 
         isLeftAttack = !leftHandDestroyed && (rightHandDestroyed || isLeftAttack);
-
+        animator.enabled = false;
         if (isLeftAttack)
         {
             leftHandAnimator.Play("MainLeftHandAttack");
@@ -91,11 +92,15 @@ public class MainframeBehaviour : BossBehaviour
         }
 
         // The attack animations are 2 seconds long
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.5f);
+        animator.enabled = true;
 
         if (IsAlive)
         {
             StartCoroutine(AttackStage2());
+        } else
+        {
+            animator.enabled = false;
         }
     }
 
