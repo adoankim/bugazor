@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
         {
             offsetPosition = Vector3.zero;
         }
+
         if (forceCenterSpawn)
         {
             enemySpawnOrigin = centerSpawner;
