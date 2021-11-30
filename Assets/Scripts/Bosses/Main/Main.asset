@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fd3f1d6be3f7e4fad3b1d490c2e3e3, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  bossName: Mainframus
+  prefab: {fileID: 8838077236093910052, guid: 075196ae7f5f72641ac1a173e6064dff, type: 3}
+  attackWaitMaxSeconds: 1
+  attackClasses:
+  - {fileID: 11400000, guid: af5f8d1ce98cd894ca2d71d1c46913bf, type: 2}
