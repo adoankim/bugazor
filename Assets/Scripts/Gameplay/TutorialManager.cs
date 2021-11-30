@@ -21,6 +21,15 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private PlayerShoot playerShoot;
 
+    [SerializeField]
+    private LevelsManager levelsManager;
+
+    [SerializeField]
+    private GameObject gameCanvas;
+
+    [SerializeField]
+    private GameObject tutorialCanvas;
+
     int stage = 0;
 
     private bool leftPressed = false;
@@ -29,7 +38,22 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(StartTutorial());
+        StartCoroutine("StartTutorial");
+    }
+
+    public void SkipTutorial()
+    {
+        StopCoroutine("StartTutorial");
+        FinishTutorial();
+    }
+
+    private void FinishTutorial()
+    {
+        gameCanvas.SetActive(true);
+        tutorialCanvas.SetActive(false);
+        levelsManager.enabled = true;
+        playerController.enabled = true;
+        playerShoot.enabled = true;
     }
 
     IEnumerator StartTutorial()
@@ -39,6 +63,8 @@ public class TutorialManager : MonoBehaviour
         yield return StartCoroutine(MoveStep());
 
         yield return StartCoroutine(ShootStep());
+
+        FinishTutorial();
     }
 
     IEnumerator IntroStep()
