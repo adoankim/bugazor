@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8990284503656007074}
   - component: {fileID: 2371335153102153150}
   - component: {fileID: 1525286913}
+  - component: {fileID: 7738681876206248417}
   m_Layer: 9
   m_Name: VideoConsoleShield
   m_TagString: Boss
@@ -115,6 +116,18 @@ MonoBehaviour:
   axis: {x: 0, y: 1, z: 0}
   randomStart: 0
   startRange: 2
+--- !u!114 &7738681876206248417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471260660923603881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae07d84d2561434ca0bf7dcad0051df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6527087176207146364
 PrefabInstance:
   m_ObjectHideFlags: 0

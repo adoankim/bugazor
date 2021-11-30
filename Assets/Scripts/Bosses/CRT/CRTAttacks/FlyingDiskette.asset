@@ -16,3 +16,4 @@ MonoBehaviour:
   multiplier: 1
   damage: 1
   prefab: {fileID: 7554709513555346600, guid: f6a072003452a5946a9313ab6c729e99, type: 3}
+  destroyAfterHit: 1

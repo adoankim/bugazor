@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dae6e07555869949be178679bdf7d92, type: 3}
-  m_Name: PodusAttack
+  m_Name: ArmAttack
   m_EditorClassIdentifier: 
-  attackName: Podus attack
+  attackName: Arm attack
   multiplier: 1
-  damage: 4
-  prefab: {fileID: 6821609425696782128, guid: 97fdab9ee7f66924e921cf268e8c04cf, type: 3}
-  destroyAfterHit: 1
+  damage: 3
+  prefab: {fileID: 0}

@@ -77,7 +77,10 @@ public class EnemyDamage : MonoBehaviour
     {
         _collider.enabled = false;
         yield return new WaitForSeconds(0.3f);
-        _rigidbody.bodyType = RigidbodyType2D.Static;
+        if (_rigidbody != null)
+        {
+            _rigidbody.bodyType = RigidbodyType2D.Static;
+        }
 
         // TODO: Play die animation/effect
 

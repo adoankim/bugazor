@@ -12,7 +12,10 @@ public class BossAttackDeal : MonoBehaviour
         if (collision.CompareTag(Tags.Player))
         {
             collision.gameObject.GetComponent<PlayerDamage>().ReceiveDamage(attackAttributes.damage);
-            Destroy(gameObject);
+            if (attackAttributes.destroyAfterHit)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
