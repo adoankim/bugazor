@@ -4,6 +4,7 @@ using System.Collections;
 public class MainframeBehaviour : BossBehaviour
 {
     private static string stage2CoroutineName = "AttackStage2";
+    private static string stage3CoroutineName = "AttackStage3";
 
     [SerializeField]
     private BossScriptable bossAttributes;
@@ -33,6 +34,15 @@ public class MainframeBehaviour : BossBehaviour
         SetupArms();
     }
 
+    protected override void OnBossDied()
+    {
+        animator.enabled = false;
+        gameObject.transform.parent.transform.position = Vector3.right + gameObject.transform.parent.transform.position.y * Vector3.up;
+        gameObject.transform.parent.transform.GetComponent<RotateAround>().enabled = true;
+        animator.enabled = true;
+        animator.SetBool("mainDied", true);
+    }
+
     private void SetupArms()
     {
         leftHandAnimator = leftHand.GetComponent<Animator>();
@@ -40,8 +50,6 @@ public class MainframeBehaviour : BossBehaviour
 
         leftHand.GetComponent<EnemyDamage>().AddOnEnemyDieListener(OnLeftHandDestroyed);
         rightHand.GetComponent<EnemyDamage>().AddOnEnemyDieListener(OnRightHandDestroyed);
-        animator.enabled = true;
-        StartCoroutine(stage2CoroutineName);
     }
 
     private void OnLeftHandDestroyed()
@@ -51,8 +59,9 @@ public class MainframeBehaviour : BossBehaviour
         if (rightHandDestroyed)
         {
             StopCoroutine(stage2CoroutineName);
+            animator.enabled = true;
             animator.SetBool("isStage3", true);
-            StartCoroutine(AttackStage3());
+            StartCoroutine(stage3CoroutineName);
         }
     }
 
@@ -63,8 +72,9 @@ public class MainframeBehaviour : BossBehaviour
         if (leftHandDestroyed)
         {
             StopCoroutine(stage2CoroutineName);
+            animator.enabled = true;
             animator.SetBool("isStage3", true);
-            StartCoroutine(AttackStage3());
+            StartCoroutine(stage3CoroutineName);
         }
     }
 
@@ -134,17 +144,15 @@ public class MainframeBehaviour : BossBehaviour
 
     IEnumerator AttackStage3()
     {
-        yield return new WaitForSeconds(Random.Range(1f, bossAttributes.attackWaitMaxSeconds));
+        yield return new WaitForSeconds(Random.Range(.5f, bossAttributes.attackWaitMaxSeconds));
 
         int attackType = Random.Range(0, bossAttributes.attackClasses.Length);
         BossAttackScriptable attack = bossAttributes.attackClasses[attackType];
 
-
-        Instantiate(attack.prefab, transform.position + Vector3.up * -2.5f, Quaternion.identity);
-
         if (IsAlive)
         {
-            StartCoroutine(AttackStage3());
+            Instantiate(attack.prefab, transform.position + Vector3.up * -2.5f, Quaternion.identity);
+            StartCoroutine(stage3CoroutineName);
         }
     }
 }

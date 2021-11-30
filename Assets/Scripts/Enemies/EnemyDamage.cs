@@ -15,7 +15,10 @@ public class EnemyDamage : MonoBehaviour
 
     [SerializeField]
     private Rigidbody2D _rigidbody;
-    
+
+    [SerializeField]
+    private bool destroyAfterDie = true;
+
     private Collider2D _collider;
 
     private bool canTakeDamage = true;
@@ -88,7 +91,8 @@ public class EnemyDamage : MonoBehaviour
 
         GameplayManager.playerPointsRef.Add(pointsPerDefeat);
         onEnemyDie.Invoke();
-
-        Destroy(gameObject);
+        if (destroyAfterDie) { 
+            Destroy(gameObject);
+        }
     }
 }

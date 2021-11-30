@@ -12,7 +12,7 @@ public class BossBehaviour : MonoBehaviour
         enemyDamage.AddOnDamageTaken(OnDamageTaken);
     }
 
-    private void OnBossDied()
+    protected virtual void OnBossDied()
     {
         LevelsManager._instance.GoNextLevel();
     }
