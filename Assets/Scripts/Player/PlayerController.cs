@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
     }
 
+    public void StopMove()
+    {
+        _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+    }
+
     private void MovePlayer()
     {
         float h = Input.GetAxisRaw("Horizontal");
