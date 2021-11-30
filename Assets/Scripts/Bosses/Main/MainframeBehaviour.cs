@@ -123,7 +123,7 @@ public class MainframeBehaviour : BossBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(Random.Range(1.5f, bossAttributes.attackWaitMaxSeconds));
+        yield return new WaitForSeconds(Random.Range(1f, 2f));
 
         if (IsStage2Finished())
         {
@@ -172,7 +172,7 @@ public class MainframeBehaviour : BossBehaviour
 
     IEnumerator AttackStage3()
     {
-        yield return new WaitForSeconds(Random.Range(.5f, bossAttributes.attackWaitMaxSeconds));
+        yield return new WaitForSeconds(Random.Range(.25f, 1.0f));
 
         int attackType = Random.Range(0, bossAttributes.attackClasses.Length);
         BossAttackScriptable attack = bossAttributes.attackClasses[attackType];
