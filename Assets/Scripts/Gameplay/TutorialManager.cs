@@ -30,6 +30,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private GameObject tutorialCanvas;
 
+    [SerializeField]
+    private GameObject storyDiskette;   
+
     int stage = 0;
 
     private bool leftPressed = false;
@@ -54,6 +57,7 @@ public class TutorialManager : MonoBehaviour
         levelsManager.enabled = true;
         playerController.enabled = true;
         playerShoot.enabled = true;
+        Destroy(gameObject);
     }
 
     IEnumerator StartTutorial()
@@ -63,6 +67,8 @@ public class TutorialManager : MonoBehaviour
         yield return StartCoroutine(MoveStep());
 
         yield return StartCoroutine(ShootStep());
+
+        yield return StartCoroutine(StoryStep());
 
         FinishTutorial();
     }
@@ -74,7 +80,7 @@ public class TutorialManager : MonoBehaviour
         tutorialText.text = "Hey!";
         yield return new WaitForSeconds(2f);
 
-        tutorialText.text = "Yeah you!";
+        tutorialText.text = "Yeah, you!";
 
         yield return new WaitForSeconds(3f);
     }
@@ -144,7 +150,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        tutorialText.text = "Try to release your inner energy";
+        tutorialText.text = "Try to release your inner energy.";
 
         yield return new WaitForSeconds(2f);
 
@@ -167,4 +173,78 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
+    IEnumerator StoryStep()
+    {
+        storyDiskette.SetActive(true);
+
+        MoveVerticalFromAToB check = storyDiskette.GetComponent<MoveVerticalFromAToB>();
+        EnemyDamage enemyDamage = storyDiskette.GetComponent<EnemyDamage>();
+        GameObject diskette = storyDiskette.transform.Find("diskette").gameObject;
+        GameObject particleSystem = storyDiskette.transform.Find("FreeParticles").gameObject;
+        GameObject bugInDiskette = storyDiskette.transform.Find("BugInDiskette").gameObject;
+        GameObject byeParticles = storyDiskette.transform.Find("ByeParticles").gameObject;
+
+        while (!check.HasReachedTargetPosition)
+        {
+            yield return new WaitForSeconds(2f);
+        }
+
+        tutorialText.text = "Mmmm... what is that?";
+
+        yield return new WaitForSeconds(3f);
+
+        tutorialText.text = "Should we shoot to it?";
+
+        yield return new WaitForSeconds(3f);
+        
+        playerController.enabled = true;
+        playerShoot.enabled = true;
+
+        while (enemyDamage.IsAlive)
+        {
+            yield return new WaitForSeconds(2f);
+        }
+
+        playerController.enabled = false;
+        playerShoot.enabled = false;
+
+        tutorialText.text = "";
+        particleSystem.SetActive(true);
+        diskette.SetActive(false);
+
+        yield return new WaitForSeconds(1.6f);
+        bugInDiskette.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        tutorialText.text = "Uh????";
+
+        yield return new WaitForSeconds(2.5f);
+
+        tutorialText.text = "Where am I??";
+
+        yield return new WaitForSeconds(3f);
+
+        tutorialText.text = "Oh!, I was trapped in that diskette?";
+
+        yield return new WaitForSeconds(3.5f);
+
+        tutorialText.text = "Thanks for saving me!";
+
+        yield return new WaitForSeconds(2.5f);
+
+        tutorialText.text = "Bye!";
+
+        yield return new WaitForSeconds(1.5f);
+
+        byeParticles.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        tutorialText.text = "";
+        bugInDiskette.SetActive(false);
+
+
+        yield return new WaitForSeconds(3f);
+    }
 }

@@ -13,7 +13,12 @@ public class MoveVerticalFromAToB : MonoBehaviour
     private float endPoint;
 
     private Vector3 basePoint;
+
     private bool reachTarget;
+
+    public bool HasReachedTargetPosition {
+        get { return reachTarget; }
+    }
 
     void Start()
     {
