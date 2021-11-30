@@ -15,6 +15,8 @@ public class MainframeBehaviour : BossBehaviour
     [SerializeField]
     private GameObject shields;
 
+    private MainframuStory mainframuStory;
+
     private GameObject leftHand;
     private GameObject rightHand;
     private Animator leftHandAnimator;
@@ -25,6 +27,8 @@ public class MainframeBehaviour : BossBehaviour
     protected override void Awake()
     {
         base.Awake();
+
+        mainframuStory = transform.parent.transform.parent.GetComponent<MainframuStory>();
 
         AddShieldBreakListeners();
         SetupArms();
@@ -92,7 +96,7 @@ public class MainframeBehaviour : BossBehaviour
         if(shields.transform.childCount < 2)
         {
             // 2 - second stage arms attack and horizontal movement
-            StartStage2();
+            mainframuStory.OnShieldBroken(StartStage2);
         }
     }
 

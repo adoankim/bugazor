@@ -20,6 +20,7 @@ public class StoryManager : MonoBehaviour
         GameObject player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         playerShoot = player.GetComponent<PlayerShoot>();
+        playerController.StopMove();
         playerController.enabled = false;
         playerShoot.enabled = false;
 

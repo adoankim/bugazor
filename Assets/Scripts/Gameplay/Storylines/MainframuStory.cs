@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MainframuStory : StoryManager
 {
     protected override IEnumerator StartStory()
     {
-
+        
         MoveVerticalFromAToB check = transform.GetComponent<MoveVerticalFromAToB>();
 
         while (!check.HasReachedTargetPosition)
@@ -36,6 +38,36 @@ public class MainframuStory : StoryManager
     protected override void OnBossDie()
     {
         base.OnBossDie();
+    }
 
+    public void OnShieldBroken(UnityEngine.Events.UnityAction continueCallback)
+    {
+        Debug.Log("On shield broka");
+        StartCoroutine(StartShieldBrokenStory(continueCallback));
+    }
+
+    IEnumerator StartShieldBrokenStory(UnityAction continueCallback)
+    {
+        playerController.StopMove();
+        playerController.enabled = false;
+        playerShoot.enabled = false;
+
+        yield return new WaitForSeconds(2);
+
+        chatBox.SetActive(true);
+
+        chatBoxText.text = "arg my collection waaaaall!!!";
+
+        yield return new WaitForSeconds(4);
+
+        chatBoxText.text = "You're going to pay for this!";
+
+        yield return new WaitForSeconds(3);
+
+        chatBox.SetActive(false);
+        playerController.enabled = true;
+        playerShoot.enabled = true;
+
+        continueCallback();
     }
 }
