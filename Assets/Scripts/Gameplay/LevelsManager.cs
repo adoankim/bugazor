@@ -13,7 +13,11 @@ public class LevelsManager : MonoBehaviour
     [SerializeField]
     private List<LevelEnemySettingsScriptable> levelsSettings;
 
+    [SerializeField]
+    private LevelEnemySettingsScriptable finalBossLevelSetting;
+
     private bool isBossFight = false;
+    private bool isFinalBossFightStarted = false;
     private int currentLevel = 0;
     private int currentLevelStage = 0;
     private float playTime = 0.0f;
@@ -96,6 +100,12 @@ public class LevelsManager : MonoBehaviour
             isBossFight = false;
             currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
             StartCoroutine(coroutineName);
+        } else if(!isFinalBossFightStarted)
+        {
+            isFinalBossFightStarted = true;
+            StopCoroutine(coroutineName);
+            enemySpawner.SpawnEnemy(finalBossLevelSetting.bossPrefab, finalBossLevelSetting.bossOffsetPosition, true);
+
         }
     }
 
