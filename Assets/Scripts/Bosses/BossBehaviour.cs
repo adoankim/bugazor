@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossBehaviour : MonoBehaviour
 {
 
-    private EnemyDamage enemyDamage;
+    protected EnemyDamage enemyDamage;
 
     protected virtual void Awake()
     {

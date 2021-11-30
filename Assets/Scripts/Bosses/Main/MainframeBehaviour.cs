@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MainframeBehaviour : BossBehaviour
 {
+    private static string stage2CoroutineName = "AttackStage2";
+
     [SerializeField]
     private BossScriptable bossAttributes;
 
@@ -26,6 +28,7 @@ public class MainframeBehaviour : BossBehaviour
     protected override void Awake()
     {
         base.Awake();
+
         AddShieldBreakListeners();
         SetupArms();
     }
@@ -37,16 +40,32 @@ public class MainframeBehaviour : BossBehaviour
 
         leftHand.GetComponent<EnemyDamage>().AddOnEnemyDieListener(OnLeftHandDestroyed);
         rightHand.GetComponent<EnemyDamage>().AddOnEnemyDieListener(OnRightHandDestroyed);
+        animator.enabled = true;
+        StartCoroutine(stage2CoroutineName);
     }
 
     private void OnLeftHandDestroyed()
     {
         leftHandDestroyed = true;
+        enemyDamage.ReceiveDamage(100);
+        if (rightHandDestroyed)
+        {
+            StopCoroutine(stage2CoroutineName);
+            animator.SetBool("isStage3", true);
+            StartCoroutine(AttackStage3());
+        }
     }
 
     private void OnRightHandDestroyed()
     {
         rightHandDestroyed = true;
+        enemyDamage.ReceiveDamage(100);
+        if (leftHandDestroyed)
+        {
+            StopCoroutine(stage2CoroutineName);
+            animator.SetBool("isStage3", true);
+            StartCoroutine(AttackStage3());
+        }
     }
 
     private void AddShieldBreakListeners()
@@ -64,18 +83,30 @@ public class MainframeBehaviour : BossBehaviour
         if(shields.transform.childCount < 2)
         {
             animator.enabled = true;
-            StartCoroutine(AttackStage2());
+            StartCoroutine(stage2CoroutineName);
         }
+    }
+
+    private bool IsStage2Finished()
+    {
+        return rightHandDestroyed && leftHandDestroyed;
     }
 
     IEnumerator AttackStage2()
     {
-        yield return new WaitForSeconds(Random.Range(1.5f, bossAttributes.attackWaitMaxSeconds));
-
-        if (rightHandDestroyed && leftHandDestroyed)
+        
+        if (IsStage2Finished())
         {
             yield return null;
         }
+
+        yield return new WaitForSeconds(Random.Range(1.5f, bossAttributes.attackWaitMaxSeconds));
+
+        if (IsStage2Finished())
+        {
+            yield return null;
+        }
+
 
         bool isLeftAttack = Random.Range(0, 10) % 2 == 0;
 
@@ -95,12 +126,9 @@ public class MainframeBehaviour : BossBehaviour
         yield return new WaitForSeconds(1.5f);
         animator.enabled = true;
 
-        if (IsAlive)
+        if (IsAlive && !IsStage2Finished())
         {
-            StartCoroutine(AttackStage2());
-        } else
-        {
-            animator.enabled = false;
+            StartCoroutine(stage2CoroutineName);
         }
     }
 
@@ -111,27 +139,12 @@ public class MainframeBehaviour : BossBehaviour
         int attackType = Random.Range(0, bossAttributes.attackClasses.Length);
         BossAttackScriptable attack = bossAttributes.attackClasses[attackType];
 
-        if (attack.name.Contains("Punch"))
-        {
-            animator.enabled = false;
-        }
 
         Instantiate(attack.prefab, transform.position + Vector3.up * -2.5f, Quaternion.identity);
-
-        if (attack.name.Contains("Punch"))
-        {
-            yield return new WaitForSeconds(0.5f);
-            animator.enabled = true;
-        }
-
-
 
         if (IsAlive)
         {
             StartCoroutine(AttackStage3());
-        } else
-        {
-            animator.enabled = false;
         }
     }
 }
