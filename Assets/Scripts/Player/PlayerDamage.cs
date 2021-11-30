@@ -45,7 +45,6 @@ public class PlayerDamage : MonoBehaviour
     {
         if(!canTakeDamage)
         {
-            Debug.Log("Cannot take damage");
             return;
         }
         

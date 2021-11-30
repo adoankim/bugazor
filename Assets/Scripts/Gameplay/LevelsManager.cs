@@ -61,7 +61,7 @@ public class LevelsManager : MonoBehaviour
     private void CheckNextLevelAndUpdate()
     {
         // Skip level check during bossfights
-        if (isBossFight)
+        if (isBossFight || isFinalBossFightStarted)
         {
             return;
         }

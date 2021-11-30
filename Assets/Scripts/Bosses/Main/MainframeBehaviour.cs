@@ -15,12 +15,8 @@ public class MainframeBehaviour : BossBehaviour
     [SerializeField]
     private GameObject shields;
 
-    [SerializeField]
     private GameObject leftHand;
-
-    [SerializeField]
     private GameObject rightHand;
-
     private Animator leftHandAnimator;
     private Animator rightHandAnimator;
     private bool leftHandDestroyed;
@@ -45,6 +41,10 @@ public class MainframeBehaviour : BossBehaviour
 
     private void SetupArms()
     {
+
+        leftHand = gameObject.transform.parent.Find("LeftHand").gameObject;
+        rightHand = gameObject.transform.parent.Find("RightHand").gameObject;
+
         leftHandAnimator = leftHand.GetComponent<Animator>();
         rightHandAnimator = rightHand.GetComponent<Animator>();
 
@@ -89,12 +89,21 @@ public class MainframeBehaviour : BossBehaviour
 
     private void OnShieldDestroyed()
     {
-        // 2 - second stage arms attack and horizontal movement
         if(shields.transform.childCount < 2)
         {
-            animator.enabled = true;
-            StartCoroutine(stage2CoroutineName);
+            // 2 - second stage arms attack and horizontal movement
+            StartStage2();
         }
+    }
+
+    private void StartStage2()
+    {
+        transform.GetComponent<Collider2D>().enabled = true;
+        leftHand.GetComponent<Collider2D>().enabled = true;
+        rightHand.GetComponent<Collider2D>().enabled = true;
+
+        animator.enabled = true;
+        StartCoroutine(stage2CoroutineName);
     }
 
     private bool IsStage2Finished()
@@ -104,7 +113,7 @@ public class MainframeBehaviour : BossBehaviour
 
     IEnumerator AttackStage2()
     {
-        
+
         if (IsStage2Finished())
         {
             yield return null;
@@ -122,18 +131,33 @@ public class MainframeBehaviour : BossBehaviour
 
         isLeftAttack = !leftHandDestroyed && (rightHandDestroyed || isLeftAttack);
         animator.enabled = false;
+        bool attackStarted = true;
         if (isLeftAttack)
         {
-            leftHandAnimator.Play("MainLeftHandAttack");
-        } 
-        else if(!rightHandDestroyed)
+            try {
+                leftHandAnimator.Play("MainLeftHandAttack");
+            } catch
+            {
+                attackStarted = false;
+            }
+        }
+        else if (!rightHandDestroyed)
         {
-
-            rightHandAnimator.Play("MainRightHandAttack");
+            try
+            {
+                rightHandAnimator.Play("MainRightHandAttack");
+            }
+            catch
+            {
+                attackStarted = false;
+            }
         }
 
-        // The attack animations are 2 seconds long
-        yield return new WaitForSeconds(1.5f);
+        if (attackStarted)
+        {
+            // The attack animations are 2 seconds long
+            yield return new WaitForSeconds(1.5f);
+        }
         animator.enabled = true;
 
         if (IsAlive && !IsStage2Finished())

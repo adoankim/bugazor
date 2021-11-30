@@ -91,6 +91,7 @@ public class EnemyDamage : MonoBehaviour
 
         GameplayManager.playerPointsRef.Add(pointsPerDefeat);
         onEnemyDie.Invoke();
+
         if (destroyAfterDie) { 
             Destroy(gameObject);
         }
