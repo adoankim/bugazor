@@ -57,6 +57,20 @@ public class TutorialManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    protected IEnumerator DisplayTextProgresively(string text, float endWait = 3f, float delayBetweenCharacters = 0.1f)
+    {
+        tutorialText.text = "";
+        int i = 0;
+        while (i < text.Length)
+        {
+            tutorialText.text += text[i];
+            yield return new WaitForSeconds(delayBetweenCharacters);
+            i++;
+        }
+
+        yield return new WaitForSeconds(endWait);
+    }
+
     IEnumerator StartTutorial()
     {
         yield return StartCoroutine(IntroStep());
@@ -74,12 +88,9 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        tutorialText.text = "Hey!";
-        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(DisplayTextProgresively("Hey!", 2f));
 
-        tutorialText.text = "Yeah, you!";
-
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(DisplayTextProgresively("Yeah, you!", 2f));
     }
 
     private void Update()
@@ -112,9 +123,7 @@ public class TutorialManager : MonoBehaviour
     IEnumerator MoveStep()
     {
 
-        tutorialText.text = "Are you able to move?";
-
-        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(DisplayTextProgresively("Are you able to move?", 2f));
 
         arrows.SetActive(true);
         playerController.enabled = true;
@@ -127,29 +136,21 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        tutorialText.text = "Well done, I knew you could move!";
-
         playerController.StopMove();
         playerController.enabled = false;
         arrows.SetActive(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(DisplayTextProgresively("Well done, I knew you could move!", 3f));
     }
 
     IEnumerator ShootStep()
     {
 
-        tutorialText.text = "Now, let's try something else...";
+        yield return StartCoroutine(DisplayTextProgresively("Now, let's try something else...", 3f));
 
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(DisplayTextProgresively("But be careful!", 2.5f, 0.15f));
 
-        tutorialText.text = "But be careful!";
-
-        yield return new WaitForSeconds(2.5f);
-
-        tutorialText.text = "Try to release your inner energy.";
-
-        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(DisplayTextProgresively("Try to release your inner energy.", 2f));
 
         space.SetActive(true);
         playerShoot.enabled = true;
@@ -162,12 +163,10 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        tutorialText.text = "Good job, you did well!";
-
         playerShoot.enabled = false;
         space.SetActive(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(DisplayTextProgresively("Good job, you did well!", 3f));
     }
 
     IEnumerator StoryStep()
@@ -186,14 +185,10 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
 
-        tutorialText.text = "Mmmm... what is that?";
+        yield return StartCoroutine(DisplayTextProgresively("Mmmm... what's that?", 3f, 0.15f));
 
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(DisplayTextProgresively("Should we shoot it?", 3f, 0.05f));
 
-        tutorialText.text = "Should we shoot it?";
-
-        yield return new WaitForSeconds(3f);
-        
         playerController.enabled = true;
         playerShoot.enabled = true;
 
@@ -215,25 +210,16 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        tutorialText.text = "Uh????";
+        yield return StartCoroutine(DisplayTextProgresively("Uh????", 2.5f, 0.4f));
 
-        yield return new WaitForSeconds(2.5f);
 
-        tutorialText.text = "Where am I??";
+        yield return StartCoroutine(DisplayTextProgresively("Where am I??", 3f, 0.3f));
 
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(DisplayTextProgresively("Oh!, I was trapped in that diskette?", 3.5f, 0.1f));
 
-        tutorialText.text = "Oh!, I was trapped in that diskette?";
+        yield return StartCoroutine(DisplayTextProgresively("Thanks for saving me!", 3.5f, 0.08f));
 
-        yield return new WaitForSeconds(3.5f);
-
-        tutorialText.text = "Thanks for saving me!";
-
-        yield return new WaitForSeconds(2.5f);
-
-        tutorialText.text = "Bye!";
-
-        yield return new WaitForSeconds(1.5f);
+        yield return StartCoroutine(DisplayTextProgresively("Bye!", 1.5f, 0.05f));
 
         byeParticles.SetActive(true);
 

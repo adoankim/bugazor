@@ -45,7 +45,6 @@ public class StoryManager : MonoBehaviour
         yield return null;
     }
 
-
     protected IEnumerator DisplayTextProgresively(string text, float delayBetweenCharacters=0.15f, float endWait=3f)
     {
         chatBoxText.text = "";
