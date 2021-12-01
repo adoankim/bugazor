@@ -169,7 +169,7 @@ public class MainframuStory : StoryManager
 
         yield return DisplayTextProgresively("Thanks for saving me, and also the rest of our kind...");
 
-        yield return DisplayTextProgresively("We can now spread our love in all the electronics around the world...", 0.15f, 4f);
+        yield return DisplayTextProgresively("We can now spread our love to all the electronics around the world...", 0.15f, 4f);
 
         chatBox.SetActive(false);
         playerController.enabled = true;
