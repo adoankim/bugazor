@@ -17,6 +17,7 @@ public class MobileBehaviour : BossBehaviour
     protected override void OnBossDied()
     {
         ReleaseChief(1);
+        Destroy(transform.parent.gameObject);
         base.OnBossDied();
     }
 

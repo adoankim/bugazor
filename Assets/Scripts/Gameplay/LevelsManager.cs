@@ -33,6 +33,7 @@ public class LevelsManager : MonoBehaviour
         _instance = this;
         currentLevelSettings = levelsSettings[currentLevel];
         currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
+
         StartCoroutine(coroutineName);
     }
 
@@ -110,10 +111,15 @@ public class LevelsManager : MonoBehaviour
         {
             isFinalBossFightStarted = true;
             StopCoroutine(coroutineName);
-            StartCoroutine(SpawnBoss(finalBossLevelSetting.bossPrefab, finalBossLevelSetting.bossOffsetPosition));
+            StartCoroutine(SpawnFinalBoss());
         }
     }
 
+    IEnumerator SpawnFinalBoss()
+    {
+        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(SpawnBoss(finalBossLevelSetting.bossPrefab, finalBossLevelSetting.bossOffsetPosition));
+    }
     IEnumerator StartNextLevel()
     {
         yield return new WaitForSeconds(4f);

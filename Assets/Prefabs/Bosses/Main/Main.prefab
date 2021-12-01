@@ -6782,6 +6782,7 @@ MonoBehaviour:
   check: {fileID: 0}
   movement: {fileID: 0}
   _collider: {fileID: 0}
+  chiefPrefab: {fileID: 0}
   bossAttributes: {fileID: 11400000, guid: e406bc216d2427f4ab24575ed08427a7, type: 2}
   animator: {fileID: 4409176765606849045}
   shields: {fileID: 157726157}
@@ -6797,7 +6798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 300
+  enemyHealth: 330
   pointsPerDefeat: 1000
   defeatTimeout: 0
   _rigidbody: {fileID: 1230327045}

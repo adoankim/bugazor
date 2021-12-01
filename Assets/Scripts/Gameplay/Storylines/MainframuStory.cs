@@ -9,6 +9,7 @@ public class MainframuStory : StoryManager
     private GameObject cylinder;
     private GameObject freeParticles;
     private GameObject theEndCanvas;
+    private TMPro.TextMeshProUGUI pointsText; 
 
     private UnityEvent onStartStoryFinished = new UnityEvent();
 
@@ -27,6 +28,7 @@ public class MainframuStory : StoryManager
         base.Start();
         container = transform.Find("Container").gameObject.transform.Find("CylinderContainer").gameObject;
         theEndCanvas = GameObject.Find("Canvases").gameObject.transform.Find("TheEndCanvas").gameObject.gameObject;
+        pointsText = theEndCanvas.transform.Find("PointsText").GetComponent<TMPro.TextMeshProUGUI>();
         freeParticles = container.transform.Find("FreeParticles").gameObject;
         cylinder = container.transform.Find("Cylinder").gameObject;
         cylinder.GetComponent<EnemyDamage>().AddOnEnemyDieListener(OnCylinderDestroyed);
@@ -174,5 +176,6 @@ public class MainframuStory : StoryManager
         playerShoot.enabled = true;
 
         theEndCanvas.SetActive(true);
+        pointsText.text = "C0nGr4t5!\n You've corrupted <b>" + playerPoints.Count + "</b> files!";
     }
 }

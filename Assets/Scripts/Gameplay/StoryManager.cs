@@ -5,8 +5,10 @@ using TMPro;
 public class StoryManager : MonoBehaviour
 {
     protected PlayerController playerController;
-    
+
     protected PlayerShoot playerShoot;
+
+    protected PlayerPoints playerPoints;
 
     protected GameObject chatBox;
 
@@ -21,6 +23,7 @@ public class StoryManager : MonoBehaviour
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         playerShoot = player.GetComponent<PlayerShoot>();
+        playerPoints = player.GetComponent<PlayerPoints>();
         playerController.StopMove();
         playerController.enabled = false;
         playerShoot.enabled = false;
