@@ -283,6 +283,7 @@ MonoBehaviour:
   check: {fileID: 3135841597232630415}
   movement: {fileID: 0}
   _collider: {fileID: 6161217061959644303}
+  chiefPrefab: {fileID: 8447219477042519936, guid: f2d9c2ca21a03524ebd3409150419b80, type: 3}
   bossAttributes: {fileID: 11400000, guid: 70801135149864c49827ea09f69f1371, type: 2}
   animator: {fileID: 211406612}
 --- !u!114 &5466442133076038880
@@ -300,6 +301,7 @@ MonoBehaviour:
   check: {fileID: 0}
   movement: {fileID: 0}
   _collider: {fileID: 0}
+  chiefPrefab: {fileID: 0}
 --- !u!114 &8205238933854936836
 MonoBehaviour:
   m_ObjectHideFlags: 0

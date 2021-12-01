@@ -14,6 +14,9 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField]
     protected Collider2D _collider;
 
+    [SerializeField]
+    protected GameObject chiefPrefab;
+
     protected virtual void Awake()
     {
         enemyDamage = GetComponentInParent<EnemyDamage>();
@@ -21,8 +24,16 @@ public class BossBehaviour : MonoBehaviour
         enemyDamage.AddOnDamageTaken(OnDamageTaken);
     }
 
-    protected virtual void OnBossDied()
+    public void ReleaseChief(int pos)
     {
+        int kind = pos % chiefPrefab.transform.childCount;
+
+        GameObject chief = Instantiate(chiefPrefab, transform.position, Quaternion.identity);
+        chief.transform.GetChild(kind).gameObject.SetActive(true);
+    }
+
+    protected virtual void OnBossDied()
+    {   
         LevelsManager._instance.GoNextLevel();
     }
     protected virtual void OnDamageTaken()

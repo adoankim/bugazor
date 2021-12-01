@@ -17,6 +17,11 @@ public class VideoConsoleBehaviour : BossBehaviour
         base.Awake();
         StartCoroutine(Prepare());
     }
+    protected override void OnBossDied()
+    {
+        ReleaseChief(2);
+        base.OnBossDied();
+    }
 
     IEnumerator Prepare()
     {

@@ -132,6 +132,7 @@ MonoBehaviour:
   check: {fileID: -8620836640422845952}
   movement: {fileID: 0}
   _collider: {fileID: 1301012514766605845}
+  chiefPrefab: {fileID: 8447219477042519936, guid: f2d9c2ca21a03524ebd3409150419b80, type: 3}
   bossAttributes: {fileID: 11400000, guid: 204795125af8628419402a67b36b2c7a, type: 2}
   animator: {fileID: -3565471487994740148}
   innerAnimator: {fileID: 1262220519}

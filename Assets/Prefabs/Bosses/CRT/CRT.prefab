@@ -146,6 +146,7 @@ MonoBehaviour:
   check: {fileID: 8180277215065344522}
   movement: {fileID: 5630284444864720743}
   _collider: {fileID: 5630284444864720742}
+  chiefPrefab: {fileID: 8447219477042519936, guid: f2d9c2ca21a03524ebd3409150419b80, type: 3}
   magnitude: 20
   bossAttributes: {fileID: 11400000, guid: 63667281a8b2c304facb2ef031d8e450, type: 2}
 --- !u!114 &8180277215065344522

@@ -62,6 +62,14 @@ public class MusicManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public void PlayStartGame()
+    {
+        audioSource.Stop();
+        audioSource.clip = freedCompanionSound;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
     public void StartDialogue()
     {
 

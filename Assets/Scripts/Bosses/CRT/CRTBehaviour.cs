@@ -17,6 +17,11 @@ public class CRTBehaviour : BossBehaviour
         base.Awake();
         StartCoroutine(Prepare());
     }
+    protected override void OnBossDied()
+    {
+        ReleaseChief(0);
+        base.OnBossDied();
+    }
 
     IEnumerator Prepare()
     {

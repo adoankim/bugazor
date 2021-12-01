@@ -14,6 +14,11 @@ public class MobileBehaviour : BossBehaviour
         base.Awake();
         StartCoroutine(Prepare());
     }
+    protected override void OnBossDied()
+    {
+        ReleaseChief(1);
+        base.OnBossDied();
+    }
 
     IEnumerator Prepare()
     {
