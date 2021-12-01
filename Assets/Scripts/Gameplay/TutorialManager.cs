@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -193,7 +190,7 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        tutorialText.text = "Should we shoot to it?";
+        tutorialText.text = "Should we shoot it?";
 
         yield return new WaitForSeconds(3f);
         
@@ -205,6 +202,7 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
 
+        playerController.StopMove();
         playerController.enabled = false;
         playerShoot.enabled = false;
 
