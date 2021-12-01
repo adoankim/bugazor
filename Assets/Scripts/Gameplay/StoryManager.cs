@@ -14,9 +14,11 @@ public class StoryManager : MonoBehaviour
 
     public EnemyDamage enemyDamage;
 
+    protected GameObject player;
+
     protected virtual void Start()
     {
-        GameObject player = GameObject.Find("Player");
+        player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         playerShoot = player.GetComponent<PlayerShoot>();
         playerController.StopMove();

@@ -46,7 +46,7 @@ public class MainframuStory : StoryManager
 
         yield return DisplayTextProgresively("The bugs you've freed are now causing problems everywhere!!", 0.1f, 4f);
 
-        yield return DisplayTextProgresively("You shall not pass!", 0.1f, 3f);
+        yield return DisplayTextProgresively("You shall not pass!", 0.05f, 3f);
         
         chatBox.SetActive(false);
         playerController.enabled = true;
@@ -74,9 +74,9 @@ public class MainframuStory : StoryManager
 
         chatBox.SetActive(true);
 
-        yield return DisplayTextProgresively("arg my collection waaaaall!!!", 0.05f, 4f);
+        yield return DisplayTextProgresively("arg my collection waaaaall!!!", 0.025f, 4f);
 
-        yield return DisplayTextProgresively("You're going to pay for this!!!", 0.05f, 4f);
+        yield return DisplayTextProgresively("You're going to pay for this!!!", 0.025f, 4f);
 
 
         chatBox.SetActive(false);
@@ -91,6 +91,8 @@ public class MainframuStory : StoryManager
         playerController.StopMove();
         playerController.enabled = false;
         playerShoot.enabled = false;
+
+        player.GetComponent<PlayerDamage>().AddLives(9999);
 
         yield return new WaitForSeconds(0.25f);
 
