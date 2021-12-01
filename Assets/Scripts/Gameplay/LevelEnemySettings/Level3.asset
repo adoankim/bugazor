@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 2711299263516999715, guid: e5da7c77e477de544bec1d7c7adfb1af, type: 3}
   - {fileID: 3449018386744225838, guid: 5226b6b79a787274abd64d80772986f1, type: 3}
   - {fileID: 6821609425696782128, guid: 4456e2b66c1853b4c9e7476eea19d0fe, type: 3}
-  timeLapseMilestones: 050000000500000005000000
+  timeLapseMilestones: 1e0000002300000028000000
   bossPrefab: {fileID: 442897444955024021, guid: 8976bbe7529953142937d65fcb9665ff, type: 3}
   bossOffsetPosition: {x: 0, y: -10, z: 0}
   maxSpawnWait: 1.5
