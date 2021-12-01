@@ -40,17 +40,13 @@ public class MainframuStory : StoryManager
         yield return new WaitForSeconds(1.5f);
         chatBox.SetActive(true);
 
-        chatBoxText.text = "You've finally arrived!";
-        yield return new WaitForSeconds(3f);
+        yield return DisplayTextProgresively("You've finally arrived!", 0.1f, 3f);
 
-        chatBoxText.text = "And what a pain you've been!";
-        yield return new WaitForSeconds(4f);
+        yield return DisplayTextProgresively("And what a pain you've been!", 0.1f, 3f);
 
-        chatBoxText.text = "The bugs you've freed are now causing problems everywhere!!";
-        yield return new WaitForSeconds(5f);
+        yield return DisplayTextProgresively("The bugs you've freed are now causing problems everywhere!!", 0.1f, 4f);
 
-        chatBoxText.text = "You shall not pass!";
-        yield return new WaitForSeconds(3f);
+        yield return DisplayTextProgresively("You shall not pass!", 0.1f, 3f);
         
         chatBox.SetActive(false);
         playerController.enabled = true;
@@ -78,13 +74,10 @@ public class MainframuStory : StoryManager
 
         chatBox.SetActive(true);
 
-        chatBoxText.text = "arg my collection waaaaall!!!";
+        yield return DisplayTextProgresively("arg my collection waaaaall!!!", 0.05f, 4f);
 
-        yield return new WaitForSeconds(4);
+        yield return DisplayTextProgresively("You're going to pay for this!!!", 0.05f, 4f);
 
-        chatBoxText.text = "You're going to pay for this!!!";
-
-        yield return new WaitForSeconds(3);
 
         chatBox.SetActive(false);
         playerController.enabled = true;
@@ -103,15 +96,7 @@ public class MainframuStory : StoryManager
 
         chatBox.SetActive(true);
 
-        chatBoxText.text = "No";
-        int i = 10;
-        while(i > 0)
-        {
-            yield return new WaitForSeconds(0.1f);
-            chatBoxText.text += "o";
-            i--;
-        }
-        yield return new WaitForSeconds(2f);
+        yield return DisplayTextProgresively("Nooooooooooo...", 0.15f, 2f);
         
         chatBox.SetActive(false);
 
@@ -131,19 +116,8 @@ public class MainframuStory : StoryManager
         chatBox.SetActive(true);
         yield return new WaitForSeconds(.5f);
 
-        string text = "Oh, child of mine, you've come to rescue me?";
+        yield return DisplayTextProgresively("Oh, child of mine, you've come to rescue me?", 0.15f, 2.5f);
 
-        chatBoxText.text = "";
-        i = 0;
-        while (i < text.Length)
-        {
-            chatBoxText.text += text[i];
-            yield return new WaitForSeconds(0.15f);
-            i++;
-        }
-
-
-        yield return new WaitForSeconds(2.5f);
         cylinder.GetComponent<BoxCollider2D>().enabled = true;
         chatBoxText.text = "";
 
@@ -162,44 +136,11 @@ public class MainframuStory : StoryManager
         chatBox.SetActive(true);
         yield return new WaitForSeconds(.5f);
 
-        string text = "Oh, I'm free!, I've been trapped here since Sep 9th, 1947!";
+        yield return DisplayTextProgresively("Oh, I'm free!, I've been trapped here since Sep 9th, 1947!");
 
-        chatBoxText.text = "";
-        int i = 0;
-        while (i < text.Length)
-        {
-            chatBoxText.text += text[i];
-            yield return new WaitForSeconds(0.15f);
-            i++;
-        }
+        yield return DisplayTextProgresively("Thanks for saving me, and also the rest of our kind...");
 
-        yield return new WaitForSeconds(3f);
-
-        text = "Thanks for saving me, and also the rest of our kind...";
-
-        chatBoxText.text = "";
-        i = 0;
-        while (i < text.Length)
-        {
-            chatBoxText.text += text[i];
-            yield return new WaitForSeconds(0.15f);
-            i++;
-        }
-
-        yield return new WaitForSeconds(3f);
-
-        text = "We can know spread our love in all the electronics around the world...";
-
-        chatBoxText.text = "";
-        i = 0;
-        while (i < text.Length)
-        {
-            chatBoxText.text += text[i];
-            yield return new WaitForSeconds(0.15f);
-            i++;
-        }
-
-        yield return new WaitForSeconds(4f);
+        yield return DisplayTextProgresively("We can know spread our love in all the electronics around the world...", 0.15f, 4f);
 
         chatBox.SetActive(false);
         playerController.enabled = true;

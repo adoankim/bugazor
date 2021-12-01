@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using System;
 
 public class StoryManager : MonoBehaviour
 {
@@ -42,6 +41,21 @@ public class StoryManager : MonoBehaviour
         playerController.enabled = true;
         playerShoot.enabled = true;
         yield return null;
+    }
+
+
+    protected IEnumerator DisplayTextProgresively(string text, float delayBetweenCharacters=0.15f, float endWait=3f)
+    {
+        chatBoxText.text = "";
+        int i = 0;
+        while (i < text.Length)
+        {
+            chatBoxText.text += text[i];
+            yield return new WaitForSeconds(delayBetweenCharacters);
+            i++;
+        }
+
+        yield return new WaitForSeconds(endWait);
     }
 
 }
