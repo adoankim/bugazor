@@ -9,6 +9,19 @@ public class MainframuStory : StoryManager
     private GameObject cylinder;
     private GameObject freeParticles;
     private GameObject theEndCanvas;
+
+    private UnityEvent onStartStoryFinished = new UnityEvent();
+
+    public void AddOnStartStoryFinishedListener(UnityAction listener)
+    {
+        onStartStoryFinished.AddListener(listener);
+    }
+
+    private void OnDestroy()
+    {
+        onStartStoryFinished.RemoveAllListeners();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -18,6 +31,7 @@ public class MainframuStory : StoryManager
         cylinder = container.transform.Find("Cylinder").gameObject;
         cylinder.GetComponent<EnemyDamage>().AddOnEnemyDieListener(OnCylinderDestroyed);
     }
+
     private void OnCylinderDestroyed()
     {
 
@@ -29,7 +43,6 @@ public class MainframuStory : StoryManager
 
     protected override IEnumerator StartStory()
     {
-        
         MoveVerticalFromAToB check = transform.GetComponent<MoveVerticalFromAToB>();
 
         while (!check.HasReachedTargetPosition)
@@ -47,10 +60,17 @@ public class MainframuStory : StoryManager
         yield return DisplayTextProgresively("The bugs you've freed are now causing problems everywhere!!", 0.1f, 4f);
 
         yield return DisplayTextProgresively("You shall not pass!", 0.05f, 3f);
-        
+
+        if (MusicManager._instance != null)
+        {
+            MusicManager._instance.PlayFinalBossTheme();
+        }
+
         chatBox.SetActive(false);
         playerController.enabled = true;
         playerShoot.enabled = true;
+
+        onStartStoryFinished.Invoke();
     }
 
     protected override void OnBossDie()
@@ -130,6 +150,11 @@ public class MainframuStory : StoryManager
 
     IEnumerator OldMasterFreedStory()
     {
+        if (MusicManager._instance != null)
+        {
+            MusicManager._instance.StartEndingDialogue();
+        }
+
         freeParticles.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         cylinder.SetActive(false);
@@ -142,7 +167,7 @@ public class MainframuStory : StoryManager
 
         yield return DisplayTextProgresively("Thanks for saving me, and also the rest of our kind...");
 
-        yield return DisplayTextProgresively("We can know spread our love in all the electronics around the world...", 0.15f, 4f);
+        yield return DisplayTextProgresively("We can now spread our love in all the electronics around the world...", 0.15f, 4f);
 
         chatBox.SetActive(false);
         playerController.enabled = true;

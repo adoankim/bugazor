@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 286244357858133921}
   - component: {fileID: -3565471487994740148}
   - component: {fileID: 1525286913}
+  - component: {fileID: -8620836640422845952}
   m_Layer: 9
   m_Name: VideoConsole
   m_TagString: Boss
@@ -45,7 +46,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4471260660923603881}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -110,10 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 30
+  enemyHealth: 45
   pointsPerDefeat: 30
-  defeatTimeout: 1.2
+  defeatTimeout: 0.5
   _rigidbody: {fileID: 0}
+  destroyAfterDie: 1
+  destroyFXPrefab: {fileID: 6726157375308721071, guid: 7cb297fe06c2f3c40b9146bdaae91dc3, type: 3}
 --- !u!114 &286244357858133921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4fd3348799b7b4a81f54b1356ce71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: {fileID: -8620836640422845952}
+  movement: {fileID: 0}
+  _collider: {fileID: 1301012514766605845}
   bossAttributes: {fileID: 11400000, guid: 204795125af8628419402a67b36b2c7a, type: 2}
   animator: {fileID: -3565471487994740148}
   innerAnimator: {fileID: 1262220519}
@@ -137,7 +143,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4471260660923603881}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4dade349effd300488f4d05883bc3e0d, type: 2}
   m_CullingMode: 0
@@ -165,6 +171,21 @@ MonoBehaviour:
   axis: {x: 0, y: 1, z: 0}
   randomStart: 1
   startRange: 2
+--- !u!114 &-8620836640422845952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471260660923603881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af19735ae28fcd141a0f4eb4804b28c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  startPoint: 23
+  endPoint: 2
 --- !u!1001 &6527087176207146364
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,14 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform enemySpawnOrigin;
 
+    public int NumberOfSpawnedEnemies
+    {
+        get
+        {
+            return leftSpawner.transform.childCount + centerSpawner.childCount + rightSpawner.childCount;
+        }
+    }
+
     public void SpawnEnemy(GameObject enemyPrefab, Vector3? offsetPosition = null, bool forceCenterSpawn = false)
     {
         if (offsetPosition == null)

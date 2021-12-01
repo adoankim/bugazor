@@ -5,6 +5,15 @@ public class BossBehaviour : MonoBehaviour
 
     protected EnemyDamage enemyDamage;
 
+    [SerializeField]
+    protected MoveVerticalFromAToB check;
+
+    [SerializeField]
+    protected EnemyMovement movement;
+
+    [SerializeField]
+    protected Collider2D _collider;
+
     protected virtual void Awake()
     {
         enemyDamage = GetComponentInParent<EnemyDamage>();

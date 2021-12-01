@@ -235,10 +235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 6
-  pointsPerDefeat: 6
-  defeatTimeout: 1.2
+  enemyHealth: 2
+  pointsPerDefeat: 4
+  defeatTimeout: 0.1
   _rigidbody: {fileID: 0}
+  destroyAfterDie: 1
+  destroyFXPrefab: {fileID: 2974672001299005809, guid: 89632313e832eb8498e6832a59c9a730, type: 3}
 --- !u!114 &4854932149596697163
 MonoBehaviour:
   m_ObjectHideFlags: 0

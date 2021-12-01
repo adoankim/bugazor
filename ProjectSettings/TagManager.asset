@@ -9,6 +9,8 @@ TagManager:
   - Diskette
   - Boss
   - EnemyAttack
+  - Boundaries
+  - Explosions
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - Enemy
   - Boss
   - EnemyBullet
-  - 
-  - 
+  - Boundaries
+  - Explosions
   - 
   - 
   - 

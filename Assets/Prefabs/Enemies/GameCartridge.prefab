@@ -121,10 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 2
-  pointsPerDefeat: 1
-  defeatTimeout: 1.2
+  enemyHealth: 9
+  pointsPerDefeat: 3
+  defeatTimeout: 0.1
   _rigidbody: {fileID: 453144755}
+  destroyAfterDie: 1
+  destroyFXPrefab: {fileID: 7927180866631212637, guid: 0e872fa01fd137d45b83358cf8a393ad, type: 3}
 --- !u!114 &1648710838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +212,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -20.86, y: 0}
   serializedVersion: 2
   m_Radius: 0.05
 --- !u!114 &396599136872055221

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5630284444864720743}
   - component: {fileID: 5630284444864720761}
   - component: {fileID: 5251109596137703093}
+  - component: {fileID: 8180277215065344522}
   m_Layer: 9
   m_Name: CRT
   m_TagString: Boss
@@ -44,7 +45,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630284444864720740}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630284444864720740}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d63ee9c931c997f49bee751349000c84, type: 3}
   m_Name: 
@@ -124,9 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b100175650ed7804c95706659ef1b9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 20
+  enemyHealth: 50
   pointsPerDefeat: 20
-  defeatTimeout: 1.5
+  defeatTimeout: 0.5
+  _rigidbody: {fileID: 0}
+  destroyAfterDie: 1
+  destroyFXPrefab: {fileID: 6726157375308721071, guid: 7cb297fe06c2f3c40b9146bdaae91dc3, type: 3}
 --- !u!114 &5251109596137703093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +143,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb624c9a7241bdc46a9a2807cb369396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: {fileID: 8180277215065344522}
+  movement: {fileID: 5630284444864720743}
+  _collider: {fileID: 5630284444864720742}
   magnitude: 20
   bossAttributes: {fileID: 11400000, guid: 63667281a8b2c304facb2ef031d8e450, type: 2}
+--- !u!114 &8180277215065344522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630284444864720740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af19735ae28fcd141a0f4eb4804b28c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  startPoint: 23
+  endPoint: 8
 --- !u!1001 &5630284445032525210
 PrefabInstance:
   m_ObjectHideFlags: 0

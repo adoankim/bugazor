@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -3136645466416300872}
   - component: {fileID: 1501587187567628797}
   - component: {fileID: 1744223029}
+  - component: {fileID: 7674806651177937952}
   m_Layer: 8
   m_Name: SelfieStick
   m_TagString: Enemy
@@ -112,6 +113,22 @@ MonoBehaviour:
   axis: {x: 0, y: 1, z: 1}
   randomStart: 0
   startRange: 4
+--- !u!58 &7674806651177937952
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2711299263516999715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -106.7, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &5531755687581915956
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 2
   pointsPerDefeat: 1
-  defeatTimeout: 1.2
+  defeatTimeout: 0.1
   _rigidbody: {fileID: -679227946685571539}
+  destroyAfterDie: 1
+  destroyFXPrefab: {fileID: 2974672001299005809, guid: 89632313e832eb8498e6832a59c9a730, type: 3}
 --- !u!114 &987465242240260215
 MonoBehaviour:
   m_ObjectHideFlags: 0

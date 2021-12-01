@@ -46,6 +46,12 @@ public class PlayerPoints : MonoBehaviour
 
         if(playerPoints % healthRecoveryPointFrequency == 0)
         {
+
+            if (AudioManager._instance != null)
+            {
+                AudioManager._instance.PlayHealthRecoverSound();
+            }
+
             playerDamage.AddLives(healthRecoveryQuantity);
         }
     }

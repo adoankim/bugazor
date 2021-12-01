@@ -12,8 +12,27 @@ public class MobileBehaviour : BossBehaviour
     protected override void Awake()
     {
         base.Awake();
-        StartCoroutine("Attack");
+        StartCoroutine(Prepare());
     }
+
+    IEnumerator Prepare()
+    {
+        while (!check.HasReachedTargetPosition)
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
+        _collider.enabled = true;
+        animator.enabled = true;
+
+        if (MusicManager._instance != null)
+        {
+            MusicManager._instance.PlayMidBossTheme();
+        }
+
+        yield return new WaitForSeconds(.75f);
+        yield return StartCoroutine("Attack");
+    }
+
 
     IEnumerator Attack()
     {

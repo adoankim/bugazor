@@ -19,6 +19,9 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField]
     private bool destroyAfterDie = true;
 
+    [SerializeField]
+    private GameObject destroyFXPrefab;
+
     private Collider2D _collider;
 
     private bool canTakeDamage = true;
@@ -85,7 +88,15 @@ public class EnemyDamage : MonoBehaviour
             _rigidbody.bodyType = RigidbodyType2D.Static;
         }
 
-        // TODO: Play die animation/effect
+        if (AudioManager._instance != null)
+        {
+            AudioManager._instance.PlayEnemyExplodeSound();
+        }
+
+        if (destroyFXPrefab != null)
+        {
+            Instantiate(destroyFXPrefab, transform.position, Quaternion.identity);
+        }
 
         yield return new WaitForSeconds(defeatTimeout);
 
@@ -94,6 +105,10 @@ public class EnemyDamage : MonoBehaviour
 
         if (destroyAfterDie) { 
             Destroy(gameObject);
+            if (_rigidbody != null)
+            {
+                Destroy(_rigidbody.gameObject);
+            }
         }
     }
 }

@@ -97,7 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  pushBackIntensity: 5
+  pushBackMultiplier: 1
+  particlePrefab: {fileID: 6707080285060935037, guid: c1f8f81d455806e40b28784ad1d5b68f, type: 3}
+  spriteRenderer: {fileID: 448205433336761664}
+  _collider: {fileID: -5620368928478603669}
 --- !u!61 &-5620368928478603669
 BoxCollider2D:
   m_ObjectHideFlags: 0

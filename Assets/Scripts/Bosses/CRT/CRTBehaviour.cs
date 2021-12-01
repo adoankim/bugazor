@@ -10,17 +10,40 @@ public class CRTBehaviour : BossBehaviour
     private BossScriptable bossAttributes;
 
     private int direction = -1;
+    private bool ready = false;
 
     protected override void Awake()
     {
         base.Awake();
-        StartCoroutine(UpdateDirection());
-        StartCoroutine("Attack");
+        StartCoroutine(Prepare());
+    }
+
+    IEnumerator Prepare()
+    {
+        while (!check.HasReachedTargetPosition)
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
+        movement.enabled = true;
+        _collider.enabled = true;
+        ready = true;
+
+        if (MusicManager._instance != null)
+        {
+            MusicManager._instance.PlayMidBossTheme();
+        }
+
+        yield return StartCoroutine(UpdateDirection());
+        yield return new WaitForSeconds(.75f);
+        yield return StartCoroutine("Attack");
     }
 
     void Update()
     {
-        transform.RotateAround(Vector3.zero, Vector3.up, Time.deltaTime * magnitude * direction);
+        if (ready)
+        {
+            transform.RotateAround(Vector3.zero, Vector3.up, Time.deltaTime * magnitude * direction);
+        }
     }
 
     IEnumerator UpdateDirection()

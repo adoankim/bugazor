@@ -23,15 +23,21 @@ public class MainframeBehaviour : BossBehaviour
     private Animator rightHandAnimator;
     private bool leftHandDestroyed;
     private bool rightHandDestroyed;
+    private bool allShieldsBroke;
 
     protected override void Awake()
     {
         base.Awake();
 
         mainframuStory = transform.parent.transform.parent.GetComponent<MainframuStory>();
+        mainframuStory.AddOnStartStoryFinishedListener(StartStage1);
 
-        AddShieldBreakListeners();
         SetupArms();
+    }
+
+    private void StartStage1()
+    {
+        StartCoroutine(CheckStage1());
     }
 
     protected override void OnBossDied()
@@ -82,20 +88,30 @@ public class MainframeBehaviour : BossBehaviour
         }
     }
 
-    private void AddShieldBreakListeners()
+    private void OnShieldDestroyed()
     {
-        // 1 - First stage shields need to be broken
-        foreach(EnemyDamage enemyDamage in shields.GetComponentsInChildren<EnemyDamage>())
+        if(!allShieldsBroke && shields.transform.childCount < 1)
         {
-            enemyDamage.AddOnEnemyDieListener(OnShieldDestroyed);
+            // 2 - second stage arms attack and horizontal movement
+            mainframuStory.OnShieldBroken(StartStage2);
+            allShieldsBroke = true;
         }
     }
 
-    private void OnShieldDestroyed()
+    IEnumerator CheckStage1()
     {
-        if(shields.transform.childCount < 2)
+        int timelapsed = 0;
+        while (!allShieldsBroke && timelapsed < 180)
         {
-            // 2 - second stage arms attack and horizontal movement
+            yield return new WaitForSeconds(2);
+            OnShieldDestroyed();
+            timelapsed += 2;
+        }
+
+        if (!allShieldsBroke)
+        {
+            allShieldsBroke = true;
+            Destroy(shields);
             mainframuStory.OnShieldBroken(StartStage2);
         }
     }

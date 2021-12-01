@@ -16,6 +16,12 @@ public class PlayerDamage : MonoBehaviour
     private int playerMaxHealth = 15;
 
     [SerializeField]
+    private ParticleSystem damageParticle;
+
+    [SerializeField]
+    private ParticleSystem healParticles;
+
+    [SerializeField]
     private float timeBetweenDamage = 2f;
 
     private bool canTakeDamage = true;
@@ -36,6 +42,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void AddLives(int lives)
     {
+        healParticles.Play();
         int newHealth = playerHealth + lives;
         playerHealth = Mathf.Clamp(newHealth, newHealth, playerMaxHealth);
         onHealthChanged.Invoke(playerHealth);
@@ -52,15 +59,18 @@ public class PlayerDamage : MonoBehaviour
 
         StartCoroutine(DamageTimeout(timeBetweenDamage));
         onHealthChanged.Invoke(playerHealth);
-
+        damageParticle.Play();
         if (playerHealth - damage >= 0)
         {
+            if (AudioManager._instance != null)
+            {
+                AudioManager._instance.PlayPlayerImpactSound();
+            }
             playerHealth -= damage;
         } 
         else
         {
             playerHealth = 0;
-            // Game over condition
         }
 
         onHealthChanged.Invoke(playerHealth);

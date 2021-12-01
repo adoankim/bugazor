@@ -125,7 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 4
   pointsPerDefeat: 2
-  defeatTimeout: 1.2
+  defeatTimeout: 0.1
+  _rigidbody: {fileID: 0}
+  destroyAfterDie: 1
+  destroyFXPrefab: {fileID: 2974672001299005809, guid: 89632313e832eb8498e6832a59c9a730, type: 3}
 --- !u!114 &-2578013590200518617
 MonoBehaviour:
   m_ObjectHideFlags: 0

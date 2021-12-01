@@ -54,6 +54,12 @@ public class TutorialManager : MonoBehaviour
         levelsManager.enabled = true;
         playerController.enabled = true;
         playerShoot.enabled = true;
+
+        if (MusicManager._instance != null)
+        {
+            MusicManager._instance.PlayMainTheme();
+        }
+
         Destroy(gameObject);
     }
 
@@ -200,6 +206,11 @@ public class TutorialManager : MonoBehaviour
         playerController.StopMove();
         playerController.enabled = false;
         playerShoot.enabled = false;
+
+        if(MusicManager._instance != null)
+        {
+            MusicManager._instance.StartDialogue();
+        }
 
         tutorialText.text = "";
         particleSystem.SetActive(true);

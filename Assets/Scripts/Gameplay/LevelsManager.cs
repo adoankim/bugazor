@@ -11,6 +11,9 @@ public class LevelsManager : MonoBehaviour
     private EnemySpawner enemySpawner;
 
     [SerializeField]
+    private PlayerShoot playerShoot;
+
+    [SerializeField]
     private List<LevelEnemySettingsScriptable> levelsSettings;
 
     [SerializeField]
@@ -28,18 +31,14 @@ public class LevelsManager : MonoBehaviour
     private void OnEnable()
     {
         _instance = this;
+        currentLevelSettings = levelsSettings[currentLevel];
+        currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
         StartCoroutine(coroutineName);
     }
 
     private void OnDisable()
     {
         StopCoroutine(coroutineName);
-    }
-
-    private void Start()
-    {
-        currentLevelSettings = levelsSettings[currentLevel];
-        currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
     }
 
     private void Update()
@@ -83,15 +82,22 @@ public class LevelsManager : MonoBehaviour
         {
             isBossFight = true;
             StopCoroutine(coroutineName);
-            enemySpawner.SpawnEnemy(currentLevelSettings.bossPrefab, currentLevelSettings.bossOffsetPosition, true);
+            StartCoroutine(SpawnBoss(currentLevelSettings.bossPrefab, currentLevelSettings.bossOffsetPosition));
         }
     }
 
     public void GoNextLevel()
     {
         int nextLevel = currentLevel + 1;
+ 
+        if (MusicManager._instance != null)
+        {
+            MusicManager._instance.PlayMainTheme();
+        }
+
         if ( nextLevel < levelsSettings.Count)
         {
+            playerShoot.IncreaseShootSpeed();
             currentLevel = nextLevel;
             totalPlayTime = totalPlayTime + playTime;
             playTime = 0;
@@ -99,19 +105,33 @@ public class LevelsManager : MonoBehaviour
             currentLevelSettings = levelsSettings[currentLevel];
             isBossFight = false;
             currentEnemyPrefabs = currentLevelSettings.enemyPrefabs;
-            StartCoroutine(coroutineName);
+            StartCoroutine(StartNextLevel());
         } else if(!isFinalBossFightStarted)
         {
             isFinalBossFightStarted = true;
             StopCoroutine(coroutineName);
-            enemySpawner.SpawnEnemy(finalBossLevelSetting.bossPrefab, finalBossLevelSetting.bossOffsetPosition, true);
-
+            StartCoroutine(SpawnBoss(finalBossLevelSetting.bossPrefab, finalBossLevelSetting.bossOffsetPosition));
         }
+    }
+
+    IEnumerator StartNextLevel()
+    {
+        yield return new WaitForSeconds(4f);
+        yield return StartCoroutine(coroutineName);
+    }
+
+    IEnumerator SpawnBoss(GameObject bossPrefab, Vector3 bossOffsetPosition)
+    {
+        while(enemySpawner.NumberOfSpawnedEnemies > 0)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        enemySpawner.SpawnEnemy(bossPrefab, bossOffsetPosition, true);
     }
 
     IEnumerator ManageLevel()
     {
-        yield return new WaitForSeconds(Random.Range(.5f, 2.5f));
+        yield return new WaitForSeconds(Random.Range(.5f, currentLevelSettings.maxSpawnWait));
 
         // Stage clamp increases after reaching every time lapse milestone
         // This way we show different enemy types after some time passed.

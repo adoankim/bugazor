@@ -9,9 +9,23 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private float pushBackMultiplier = 1f;
 
+    [SerializeField]
+    private GameObject particlePrefab;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private Collider2D _collider;
+
     private void Start()
     {
-        StartCoroutine(DestroyBulletAfter(5f));
+        if(AudioManager._instance != null)
+        {
+            AudioManager._instance.PlayLaserSound();
+        }
+
+        StartCoroutine(DestroyBulletAfter(.85f));
     }
 
     private IEnumerator DestroyBulletAfter(float v)
@@ -36,13 +50,20 @@ public class BulletBehaviour : MonoBehaviour
                 pushBack.DoPushBack(pushBackMultiplier);
             }
 
+            if (AudioManager._instance != null)
+            {
+                AudioManager._instance.PlayLaserImpactSound();
+            }
+
             EnemyDamage enemyDamage = collision.gameObject.GetComponent<EnemyDamage>();
             if (enemyDamage != null)
             {
                 collision.gameObject.GetComponent<EnemyDamage>().ReceiveDamage(1);
             }
-
-            StartCoroutine(DestroyBulletAfter(0f));
+            _collider.enabled = false;
+            Instantiate(particlePrefab, transform.position, Quaternion.identity, transform);
+            spriteRenderer.enabled = false;
+            StartCoroutine(DestroyBulletAfter(1f));
         }
     }
 

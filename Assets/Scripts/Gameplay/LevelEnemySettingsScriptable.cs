@@ -8,4 +8,5 @@ public class LevelEnemySettingsScriptable : ScriptableObject
     public List<int> timeLapseMilestones;
     public GameObject bossPrefab;
     public Vector3 bossOffsetPosition;
+    public float maxSpawnWait = 2.5f;
 }
