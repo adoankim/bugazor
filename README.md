@@ -1,6 +1,6 @@
 # Bugazor
 
-This is entry for the Game off jam 2021.
+This is the entry for the Game off jam 2021.
 
 In a world where the bugs are trapped under the claws of the evil electronic devices, 
 you play as the saviour that will free them all.
